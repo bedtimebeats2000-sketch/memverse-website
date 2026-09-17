@@ -1,33 +1,242 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#24211f" />
-  <meta name="description" content="MemVerse – deine Erinnerungen, verbunden. Eine lokale, visuelle Memory-App von Deep Orbit Studios." />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MemVerse — Your memories. Connected.</title>
+  <meta name="description" content="MemVerse verbindet Erinnerungen, Aufgaben, Vorlieben, Termine und Beziehungen in einem persönlichen Memory Universe.">
+  <meta name="theme-color" content="#2B2828">
+  <link rel="icon" type="image/png" href="assets/memverse-app-icon.png">
   <style>
-    :root{--bg:#24211f;--bg2:#2b2725;--card:#332e2b;--text:#f7f4f1;--muted:#bdb4ae;--vio:#9e78ff;--vio2:#6d47d9;--line:#4a413d;--ok:#bba3ff}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(circle at 70% 10%,rgba(126,82,255,.16),transparent 28%),linear-gradient(180deg,#24211f,#211e1c);color:var(--text);line-height:1.55}
-    a{color:inherit}.wrap{width:min(1120px,calc(100% - 32px));margin:auto}.nav{position:sticky;top:0;z-index:20;background:rgba(36,33,31,.82);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}.navin{display:flex;align-items:center;justify-content:space-between;min-height:70px}.brand{font-weight:800;letter-spacing:.2px}.brand span{color:var(--vio)}.links{display:flex;gap:22px;font-size:14px;color:var(--muted)}.links a{text-decoration:none}.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:14px;padding:13px 18px;background:var(--vio);color:white;font-weight:700;text-decoration:none;cursor:pointer}.btn.alt{background:transparent;border:1px solid var(--line);color:var(--text)}
-    .hero{padding:82px 0 54px}.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:48px;align-items:center}.eyebrow{color:var(--ok);font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.hero h1{font-size:clamp(44px,7vw,78px);line-height:.98;margin:15px 0 20px;letter-spacing:-.045em}.hero h1 em{font-style:normal;color:var(--vio)}.lead{font-size:19px;color:var(--muted);max-width:650px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.shot{background:linear-gradient(145deg,#302b28,#25211f);border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:14px;box-shadow:0 30px 80px rgba(0,0,0,.35)}.shot img{display:block;width:100%;border-radius:18px}.chips{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}.chip{font-size:13px;color:#d9d0cb;border:1px solid var(--line);background:#2d2926;border-radius:999px;padding:8px 11px}
-    section{padding:66px 0}.section-title{font-size:34px;letter-spacing:-.03em;margin:0 0 10px}.section-sub{color:var(--muted);max-width:720px;margin:0 0 28px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:rgba(51,46,43,.86);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:22px}.card h3{margin:0 0 8px}.card p{margin:0;color:var(--muted)}.dot{width:38px;height:38px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#d7c7ff,var(--vio2) 55%,#3d266f);box-shadow:0 0 30px rgba(158,120,255,.35);margin-bottom:16px}
-    .beta{display:grid;grid-template-columns:.9fr 1.1fr;gap:22px}.panel{background:rgba(43,39,37,.92);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:26px}.panel ul{padding-left:20px;color:var(--muted)}form{display:grid;gap:13px}label{font-size:13px;color:#d8cfca;font-weight:700}input,textarea,select{width:100%;border:1px solid var(--line);background:#262220;color:var(--text);border-radius:13px;padding:13px 14px;font:inherit;outline:none}input:focus,textarea:focus,select:focus{border-color:var(--vio)}textarea{min-height:130px;resize:vertical}.check{display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--muted)}.check input{width:auto;margin-top:4px}.tiny{font-size:12px;color:var(--muted)}
-    footer{border-top:1px solid rgba(255,255,255,.06);padding:30px 0 50px;color:var(--muted);font-size:13px}.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.legal{margin-top:18px;max-width:900px}.legal h3{color:var(--text)}
-    @media(max-width:820px){.links{display:none}.hero-grid,.beta,.grid3{grid-template-columns:1fr}.hero{padding-top:55px}.hero h1{font-size:52px}.shot{order:-1}}
+    :root{
+      --bg:#262322;
+      --bg2:#302b29;
+      --surface:#332e2b;
+      --surface2:#3a3431;
+      --text:#f5f2f0;
+      --muted:#bdb4b0;
+      --violet:#a46cff;
+      --violet2:#d8b8ff;
+      --line:rgba(255,255,255,.08);
+      --shadow:0 28px 70px rgba(0,0,0,.28);
+      --radius:26px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 75% 10%, rgba(164,108,255,.14), transparent 26rem),
+        radial-gradient(circle at 18% 24%, rgba(216,184,255,.06), transparent 24rem),
+        linear-gradient(180deg,var(--bg2),var(--bg));
+      color:var(--text);
+      min-height:100vh;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1160px,calc(100% - 32px));margin:auto}
+    header{
+      position:sticky;top:0;z-index:30;
+      background:rgba(38,35,34,.78);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--line);
+    }
+    nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:20px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:750}
+    .brand img{width:42px;height:42px;border-radius:12px;box-shadow:0 8px 26px rgba(164,108,255,.18)}
+    .navlinks{display:flex;gap:24px;color:var(--muted);font-size:14px}
+    .navlinks a:hover{color:var(--text)}
+    .cta{background:linear-gradient(135deg,var(--violet),#7d4ce7);padding:11px 16px;border-radius:14px;font-weight:700}
+    .hero{padding:92px 0 56px;display:grid;grid-template-columns:1.02fr .98fr;gap:52px;align-items:center}
+    .eyebrow{color:var(--violet2);font-weight:750;letter-spacing:.08em;text-transform:uppercase;font-size:12px}
+    h1{font-size:clamp(44px,6vw,78px);line-height:.98;margin:14px 0 22px;letter-spacing:-.05em}
+    .grad{background:linear-gradient(90deg,#fff,var(--violet2),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lead{font-size:20px;line-height:1.55;color:var(--muted);max-width:650px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 18px;border-radius:14px;font-weight:750;border:1px solid var(--line)}
+    .btn.primary{background:linear-gradient(135deg,var(--violet),#7d4ce7);border:none}
+    .btn.secondary{background:rgba(255,255,255,.035)}
+    .hero-card{
+      background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:32px;
+      padding:16px;
+      box-shadow:var(--shadow);
+    }
+    .hero-card img{display:block;width:100%;border-radius:24px;aspect-ratio:16/11;object-fit:cover}
+    .section{padding:54px 0}
+    .section h2{font-size:34px;margin:0 0 12px;letter-spacing:-.03em}
+    .section p.intro{color:var(--muted);max-width:760px;line-height:1.6}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+    .card{background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:22px;padding:22px}
+    .card .icon{width:42px;height:42px;border-radius:13px;background:rgba(164,108,255,.15);display:grid;place-items:center;margin-bottom:14px;font-size:20px}
+    .card h3{margin:0 0 8px;font-size:18px}
+    .card p{margin:0;color:var(--muted);line-height:1.55}
+    .idea{
+      display:grid;grid-template-columns:.86fr 1.14fr;gap:28px;align-items:center;
+      background:rgba(255,255,255,.028);border:1px solid var(--line);border-radius:30px;padding:24px;
+    }
+    .idea img{width:100%;border-radius:22px;display:block}
+    .mini{display:flex;align-items:center;gap:13px;margin:16px 0}
+    .mini-dot{width:11px;height:11px;border-radius:50%;background:var(--violet);box-shadow:0 0 20px rgba(164,108,255,.8)}
+    .beta{
+      display:grid;grid-template-columns:1fr 1fr;gap:28px;
+      background:linear-gradient(135deg,rgba(164,108,255,.10),rgba(255,255,255,.025));
+      border:1px solid rgba(164,108,255,.18);border-radius:30px;padding:28px
+    }
+    form{display:grid;gap:12px}
+    input,textarea{
+      width:100%;border-radius:14px;border:1px solid var(--line);background:#242120;color:var(--text);
+      padding:13px 14px;font:inherit;outline:none
+    }
+    input:focus,textarea:focus{border-color:rgba(164,108,255,.65);box-shadow:0 0 0 3px rgba(164,108,255,.10)}
+    textarea{min-height:130px;resize:vertical}
+    button{cursor:pointer;border:0;color:#fff}
+    .small{font-size:13px;color:var(--muted);line-height:1.5}
+    footer{padding:38px 0 60px;color:var(--muted);font-size:14px}
+    .footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:24px}
+    @media (max-width:860px){
+      .hero,.idea,.beta{grid-template-columns:1fr}
+      .hero{padding-top:56px}
+      .grid3{grid-template-columns:1fr}
+      .navlinks{display:none}
+    }
   </style>
 </head>
 <body>
-  <nav class="nav"><div class="wrap navin"><div class="brand">Deep Orbit Studios <span>•</span> MemVerse</div><div class="links"><a href="#idee">Idee</a><a href="#beta">Beta</a><a href="#kontakt">Kontakt</a></div></div></nav>
-  <main>
-    <section class="hero"><div class="wrap hero-grid"><div><div class="eyebrow">In Entwicklung · Android</div><h1>Deine Erinnerungen.<br><em>Verbunden.</em></h1><p class="lead">MemVerse verbindet Erinnerungen, Personen, Aufgaben, Orte und Termine zu einem persönlichen visuellen Universum – lokal, übersichtlich und ohne verpflichtende Cloud-KI.</p><div class="actions"><a class="btn" href="#beta">Für Beta anmelden</a><a class="btn alt" href="mailto:memverse.app@gmail.com">Kontakt</a></div><div class="chips"><span class="chip">Local-first</span><span class="chip">Memory Universe</span><span class="chip">Deutsch & Englisch geplant</span><span class="chip">Android</span></div></div><div class="shot"><img src="assets/memverse-reference.png" alt="MemVerse Designkonzept mit warmem Grau und violettem Memory Universe" /></div></div></section>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="#top">
+        <img src="assets/memverse-app-icon.png" alt="MemVerse App Icon">
+        <span>MemVerse</span>
+      </a>
+      <div class="navlinks">
+        <a href="#idee">Idee</a>
+        <a href="#funktionen">Funktionen</a>
+        <a href="#beta">Beta</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+      <a class="cta" href="#beta">Beta testen</a>
+    </nav>
+  </div>
+</header>
 
-    <section id="idee"><div class="wrap"><h2 class="section-title">Eine App, ein Gedächtnis.</h2><p class="section-sub">Karten, Chat, Aufgaben, Termine und das Universe greifen auf dieselben Erinnerungen zu. Ändert sich etwas, soll es sich überall konsistent widerspiegeln.</p><div class="grid3"><div class="card"><div class="dot"></div><h3>Einfach merken</h3><p>Kurze natürliche Eingaben statt komplizierter Formulare. Bei Unklarheiten fragt MemVerse gezielt nach.</p></div><div class="card"><div class="dot"></div><h3>Visuell verstehen</h3><p>Das Universe wächst aus echten Erinnerungen und Beziehungen und wird zur räumlichen Navigation durch dein Gedächtnis.</p></div><div class="card"><div class="dot"></div><h3>Privat beginnen</h3><p>Die persönliche Basis ist local-first gedacht. Erweiterte geteilte Funktionen kommen später separat hinzu.</p></div></div></div></section>
+<main id="top">
+  <section class="wrap hero">
+    <div>
+      <div class="eyebrow">Deep Orbit Studios</div>
+      <h1>Deine Erinnerungen.<br><span class="grad">Als verbundenes Universum.</span></h1>
+      <p class="lead">
+        MemVerse verbindet Erinnerungen, Personen, Vorlieben, Aufgaben, Termine und Orte in einer
+        persönlichen, visuellen Struktur. Lokal gedacht, einfach bedienbar und ohne verpflichtendes KI-Modell.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="#beta">Für Beta vormerken</a>
+        <a class="btn secondary" href="#idee">Mehr erfahren</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <img src="assets/memverse-universe.png" alt="MemVerse Universe Vorschau">
+    </div>
+  </section>
 
-    <section id="beta"><div class="wrap beta"><div class="panel"><div class="eyebrow">Beta-Warteliste</div><h2 class="section-title">MemVerse testen</h2><p class="section-sub">Wir bereiten derzeit die erste Android-Testversion vor. Trag dich ein, wenn du als Beta-Tester dabei sein möchtest.</p><ul><li>Keine Verpflichtung.</li><li>Kontakt nur im Zusammenhang mit MemVerse/Beta.</li><li>Du kannst deine Anmeldung jederzeit per E-Mail zurückziehen.</li></ul><p class="tiny">Entwickler: Deep Orbit Studios<br>Kontakt: memverse.app@gmail.com</p></div><div class="panel" id="kontakt"><form action="https://formsubmit.co/memverse.app@gmail.com" method="POST"><input type="hidden" name="_subject" value="Anmeldung zum MemVerse Beta-Test"><input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false"><label for="name">Name oder Nickname</label><input id="name" name="Name" required placeholder="Dein Name"><label for="email">E-Mail</label><input id="email" type="email" name="E-Mail" required placeholder="name@beispiel.de"><label for="device">Android-Gerät (optional)</label><input id="device" name="Android-Gerät" placeholder="z. B. Samsung Galaxy S24"><label for="msg">Nachricht (optional)</label><textarea id="msg" name="Nachricht" placeholder="Was interessiert dich an MemVerse?"></textarea><label class="check"><input type="checkbox" required> <span>Ich bin damit einverstanden, dass Deep Orbit Studios meine Angaben zur Bearbeitung der Beta-Anmeldung verwendet. Die Daten werden nicht zu Werbezwecken verkauft.</span></label><button class="btn" type="submit">Beta-Anmeldung senden</button><p class="tiny">Beim ersten Versand kann eine einmalige Bestätigung des Formular-Empfängers per E-Mail notwendig sein.</p></form></div></div></section>
+  <section id="idee" class="wrap section">
+    <div class="idea">
+      <img src="assets/memverse-app-icon.png" alt="MemVerse App Icon">
+      <div>
+        <div class="eyebrow">Die Idee</div>
+        <h2>Ein Gedächtnis, das sichtbar wird.</h2>
+        <p class="intro">
+          Im Zentrum steht dein persönliches Memory Universe. Neue Erinnerungen erzeugen Verbindungen:
+          Personen, Wünsche, Aufgaben, Termine, Orte und Themen wachsen zu einem übersichtlichen Netz zusammen.
+        </p>
+        <div class="mini"><span class="mini-dot"></span><span>Einfach speichern und später wiederfinden</span></div>
+        <div class="mini"><span class="mini-dot"></span><span>Karten, Chat und Universe greifen auf dieselben Daten zu</span></div>
+        <div class="mini"><span class="mini-dot"></span><span>Änderungen werden überall konsistent sichtbar</span></div>
+      </div>
+    </div>
+  </section>
 
-    <section><div class="wrap"><div class="panel legal"><h3>Datenschutz – Kurzinfo zur Beta-Anmeldung</h3><p>Wenn du das Formular nutzt, werden die von dir eingegebenen Angaben zur Bearbeitung deiner Beta-Anmeldung an <strong>memverse.app@gmail.com</strong> übermittelt. Die Website selbst setzt keine eigenen Analyse- oder Werbe-Tracker ein. Für die Formularübermittlung wird ein externer Formulardienst verwendet. Vor einer öffentlichen Produktveröffentlichung wird diese Seite durch eine vollständige Datenschutzerklärung und die für die finale App erforderlichen Angaben ergänzt.</p><p>Du kannst die Löschung deiner Beta-Anmeldedaten jederzeit per E-Mail an <a href="mailto:memverse.app@gmail.com">memverse.app@gmail.com</a> verlangen.</p></div></div></section>
-  </main>
-  <footer><div class="wrap foot"><div>© 2026 Deep Orbit Studios · MemVerse</div><div><a href="mailto:memverse.app@gmail.com">memverse.app@gmail.com</a></div></div></footer>
+  <section id="funktionen" class="wrap section">
+    <div class="eyebrow">MemVerse</div>
+    <h2>Einfach statt kompliziert.</h2>
+    <p class="intro">
+      Klare Eingaben sollen direkt funktionieren. Nur wenn wirklich etwas unklar ist, fragt MemVerse kurz nach.
+    </p>
+    <div class="grid3">
+      <div class="card">
+        <div class="icon">◎</div>
+        <h3>Memory Universe</h3>
+        <p>Deine Erinnerungen werden als verbundene Kategorien, Personen und Themen sichtbar.</p>
+      </div>
+      <div class="card">
+        <div class="icon">✓</div>
+        <h3>Aufgaben & Termine</h3>
+        <p>Aufgaben abhaken, Termine ändern und Erinnerungen direkt dort bearbeiten, wo du sie siehst.</p>
+      </div>
+      <div class="card">
+        <div class="icon">⌁</div>
+        <h3>Local-first</h3>
+        <p>Die persönliche Nutzung ist lokal gedacht. Ein großes KI-Modell soll nicht notwendig sein.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="beta" class="wrap section">
+    <div class="beta">
+      <div>
+        <div class="eyebrow">Beta</div>
+        <h2>MemVerse mit testen.</h2>
+        <p class="intro">
+          MemVerse befindet sich in Entwicklung. Wenn du beim Beta-Test dabei sein möchtest, kannst du dich hier unverbindlich vormerken.
+        </p>
+        <p class="small">
+          Deine Angaben werden ausschließlich zur Kontaktaufnahme für den MemVerse-Beta-Test verwendet.
+        </p>
+      </div>
+
+      <form action="https://formsubmit.co/memverse.app@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Anmeldung zum MemVerse Beta-Test">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <label>
+          <span class="small">Name oder Alias</span>
+          <input name="name" autocomplete="name" required>
+        </label>
+        <label>
+          <span class="small">E-Mail</span>
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <label>
+          <span class="small">Nachricht (optional)</span>
+          <textarea name="message" placeholder="Warum möchtest du MemVerse testen?"></textarea>
+        </label>
+        <button class="btn primary" type="submit">Für Beta vormerken</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="kontakt" class="wrap section">
+    <div class="card">
+      <div class="eyebrow">Kontakt</div>
+      <h2>Deep Orbit Studios</h2>
+      <p class="intro">
+        Fragen zu MemVerse oder zur Beta? Schreib an
+        <a href="mailto:memverse.app@gmail.com" style="color:var(--violet2)">memverse.app@gmail.com</a>.
+      </p>
+      <p class="small">
+        Betreiber/Entwicklerauftritt: Deep Orbit Studios · MemVerse befindet sich derzeit in Entwicklung.
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>© 2026 Deep Orbit Studios</span>
+    <span>MemVerse — Your memories. Connected.</span>
+  </div>
+</footer>
 </body>
 </html>
