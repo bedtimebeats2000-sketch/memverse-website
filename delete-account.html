@@ -1,55 +1,26 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MemVerse-Konto löschen — Deep Orbit Studios</title>
-  <meta name="description" content="Informationen zur Löschung eines MemVerse-Kontos und der zugehörigen serverseitigen Daten.">
-  <meta name="theme-color" content="#2B2828">
-  <link rel="icon" type="image/png" href="assets/memverse-app-icon.png">
-  <style>
-    :root{--bg:#262322;--bg2:#302b29;--text:#f5f2f0;--muted:#bdb4b0;--violet:#a46cff;--violet2:#d8b8ff;--line:rgba(255,255,255,.08)}
-    *{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 75% 10%,rgba(164,108,255,.14),transparent 26rem),linear-gradient(180deg,var(--bg2),var(--bg));color:var(--text);min-height:100vh}
-    a{color:var(--violet2)}.wrap{width:min(820px,calc(100% - 32px));margin:auto}header{border-bottom:1px solid var(--line);background:rgba(38,35,34,.88)}nav{height:72px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;gap:12px;align-items:center;color:var(--text);text-decoration:none;font-weight:750}.brand img{width:42px;height:42px;border-radius:10px}
-    main{padding:64px 0 80px}h1{font-size:clamp(38px,6vw,60px);letter-spacing:-.04em}.eyebrow{color:var(--violet2);font-size:12px;font-weight:750;letter-spacing:.08em;text-transform:uppercase}p,li{color:var(--muted);line-height:1.7}.card{background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:22px;padding:24px;margin:22px 0}.status{display:inline-block;padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:var(--violet2);font-weight:700;font-size:13px}
-    footer{border-top:1px solid var(--line);padding:28px 0 48px;color:var(--muted);font-size:14px}
-  </style>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MemVerse-Konto löschen | Deep Orbit Studios</title>
+  <meta name="description" content="MemVerse-Konto online selbst löschen, auch ohne installierte App.">
+  <meta name="theme-color" content="#2B2828"><link rel="icon" type="image/png" href="assets/memverse-app-icon.png">
+  <link rel="stylesheet" href="deletion.css">
 </head>
 <body>
-<header><div class="wrap"><nav><a class="brand" href="./"><img src="assets/memverse-app-icon.png" alt="MemVerse App Icon"><span>MemVerse</span></a><a href="./">← Zur Startseite</a></nav></div></header>
+<header><nav class="wrap"><a class="brand" href="./"><img src="assets/memverse-app-icon.png" alt=""><span>MemVerse</span></a><a href="./">Zur Startseite</a></nav></header>
 <main class="wrap">
-  <div class="eyebrow">Kontoverwaltung</div>
+  <p class="eyebrow">Deep Orbit Studios · Kontoverwaltung</p>
   <h1>MemVerse-Konto löschen</h1>
-  <p>Ein MemVerse-Konto kann zusammen mit den dazugehörigen serverseitigen Konto- und Shared-Daten gelöscht werden.</p>
-
-  <div class="card">
-    <h2>Direkt in der App</h2>
-    <p>Wenn die aktuelle MemVerse-Version die Kontolöschung in den Einstellungen anbietet, kann die Löschung dort nach einer ausdrücklichen Sicherheitsbestätigung gestartet werden.</p>
-  </div>
-
-  <div class="card">
-    <span class="status">Self-Service wird technisch angebunden</span>
-    <h2>Automatische Online-Kontolöschung</h2>
-    <p>Diese öffentliche Seite wird mit einer sicheren Firebase-Anmeldung und einer automatischen Kontolöschung verbunden. Nach erfolgreicher Authentifizierung soll der Nutzer ausschließlich sein eigenes Konto und die dazugehörigen serverseitigen Daten löschen können.</p>
-    <p>Bis diese Funktion produktiv bereitsteht, darf diese Seite nicht als bereits funktionsfähiger automatischer Löschweg gegenüber Google Play angegeben werden.</p>
-  </div>
-
-  <h2>Was wird bei der Kontolöschung entfernt?</h2>
-  <ul>
-    <li>das serverseitige MemVerse-Konto,</li>
-    <li>serverseitige Shared-/MMap-Verknüpfungen und zugehörige Berechtigungen,</li>
-    <li>zugehörige serverseitige Daten entsprechend der MemVerse-Löschlogik.</li>
-  </ul>
-
-  <h2>Was ist mit lokalen Erinnerungen?</h2>
-  <p>Private Erinnerungen, die ausschließlich lokal auf dem Gerät gespeichert sind, befinden sich nicht auf MemVerse-Servern. Eine serverseitige Kontolöschung kann diese lokalen Inhalte daher nicht aus der Ferne vom Gerät entfernen.</p>
-
-  <h2>Aufbewahrung</h2>
-  <p>Technische oder gesetzlich erforderliche Daten dürfen nur so lange fortbestehen, wie dies technisch oder rechtlich notwendig ist. Die konkrete produktive Löschlogik und etwaige Aufbewahrungsfristen werden entsprechend der tatsächlich implementierten Backend-Funktion dokumentiert.</p>
-
-  <p>Du möchtest nur einzelne Daten löschen und dein Konto behalten? <a href="data-deletion.html">Zur Datenlöschung</a>.</p>
-  <p>Weitere Informationen findest du in der <a href="privacy.html">Datenschutzerklärung</a>.</p>
+  <p>Du kannst dein MemVerse-Online-Konto hier selbst löschen, auch wenn die Android-App nicht mehr installiert ist. Melde dich mit demselben Firebase-Konto an und bestätige die Löschung. In der App findest du diese Aktion unter Einstellungen → Konto.</p>
+  <div id="deletion-app"></div>
+  <h2>Was wird gelöscht?</h2>
+  <p>Dein Firebase-Auth-Konto, Profil und Handle, Einladungen, dein Shared/MMap-Paar samt gemeinsamen Serverprojektionen, Berechtigungen, Operationen und Synchronisationsdaten sowie MemVerse-Berechtigungen und Kaufbelegzuordnungen. Die Verbindung des Partners endet; dessen eigenes Konto und private lokale Erinnerungen bleiben bestehen.</p>
+  <h2>Was bleibt?</h2>
+  <p>Ausschließlich auf Geräten gespeicherte private Memories sind nicht vom Server aus löschbar. Entferne sie in der App oder über die Android-App-Daten. Ein Google-Play-Abonnement wird durch Kontolöschung nicht automatisch gekündigt; kündige es zusätzlich in Google Play. Gesetzlich notwendige Abrechnungsunterlagen bei Google Play sowie begrenzte technische Backups/Protokolle der Infrastruktur können nach deren Regeln bestehen bleiben.</p>
+  <p>Nur Serverdaten löschen und das Konto behalten? <a href="data-deletion.html">Zur Datenlöschung</a>. <a href="privacy.html">Datenschutzerklärung</a>.</p>
+  <p>Bei Anmeldeproblemen: <a href="mailto:memverse.app@gmail.com">Support kontaktieren</a>. Die Kontolöschung selbst erfolgt nach Anmeldung ohne E-Mail-Anfrage.</p>
 </main>
-<footer><div class="wrap">© 2026 Deep Orbit Studios · <a href="privacy.html">Datenschutz</a> · <a href="data-deletion.html">Daten löschen</a></div></footer>
-</body>
-</html>
+<footer><div class="wrap">© 2026 Deep Orbit Studios · MemVerse</div></footer>
+<script type="module" src="deletion.js"></script>
+</body></html>
