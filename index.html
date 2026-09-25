@@ -226,7 +226,41 @@
       *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
       .reveal{opacity:1;transform:none}
     }
-  </style>
+  
+    .sales-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--color-line);border:1px solid var(--color-line);border-radius:24px;overflow:hidden}
+    .sales-stat{background:#242121;padding:24px}.sales-stat strong{display:block;font-size:1.15rem;margin-bottom:6px}.sales-stat span{color:var(--color-muted);font-size:.9rem;line-height:1.45}
+    .category-stage{display:grid;gap:18px}.category-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .category-tile{min-height:150px;display:flex;flex-direction:column;justify-content:space-between;cursor:default}
+    .category-tile b{font-size:1.05rem}.category-tile span{color:var(--color-muted);font-size:.9rem;line-height:1.5}
+    .shared-stage{display:grid;grid-template-columns:.78fr 1.22fr;gap:34px;align-items:center}
+    .shared-copy .price{display:inline-flex;margin:18px 0;padding:8px 12px;border:1px solid rgba(168,121,255,.25);border-radius:999px;color:var(--color-accent-soft);background:rgba(168,121,255,.07);font-size:.86rem;font-weight:750}
+    .phone{width:min(100%,470px);margin:auto;border:1px solid rgba(255,255,255,.12);border-radius:38px;padding:12px;background:#151414;box-shadow:0 35px 100px rgba(0,0,0,.42),0 0 80px rgba(168,121,255,.09);transform:perspective(1100px) rotateY(-5deg) rotateX(2deg)}
+    .phone-screen{min-height:610px;border-radius:29px;background:#211f1f;overflow:hidden;border:1px solid rgba(255,255,255,.06)}
+    .appbar{padding:18px 18px 10px}.appbar-row{display:flex;align-items:center;gap:12px}.hub{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(168,121,255,.13);color:var(--color-accent)}
+    .appbar strong{display:block;font-size:1.1rem}.appbar small{color:var(--color-muted)}
+    .app-tabs{display:flex;gap:7px;overflow:auto;padding:10px 14px 12px;scrollbar-width:none}.app-tab{white-space:nowrap;border:1px solid var(--color-line);border-radius:999px;padding:7px 10px;font-size:.68rem;letter-spacing:.05em;color:var(--color-muted);background:transparent;cursor:pointer}.app-tab.active{background:rgba(168,121,255,.14);border-color:rgba(168,121,255,.35);color:#fff}
+    .app-panel{display:none;min-height:480px;padding:14px}.app-panel.active{display:block;animation:panelIn .48s cubic-bezier(.16,1,.3,1)}
+    @keyframes panelIn{from{opacity:0;transform:translateX(24px) scale(.985)}to{opacity:1;transform:none}}
+    .mmap-stage{height:450px;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 50%,rgba(168,121,255,.08),transparent 38%)}
+    .mmap-orbit{position:absolute;left:12%;right:12%;top:33%;height:34%;border:1px solid rgba(255,255,255,.12);border-radius:50%}
+    .mmap-center,.mmap-node{position:absolute;border-radius:50%;display:grid;place-items:center;text-align:center;border:1px solid;padding:8px;color:#fff}
+    .mmap-center{width:104px;height:104px;left:50%;top:50%;transform:translate(-50%,-50%);background:#383239;border-width:2px;border-color:#a879ff;font-weight:800;z-index:5}
+    .mmap-node{width:76px;height:76px;background:#292525;font-size:.72rem;transform:translate(-50%,-50%) scale(var(--s,1));opacity:var(--a,1);z-index:var(--z,1)}
+    .mmap-line{position:absolute;height:1px;background:rgba(255,255,255,.12);transform-origin:0 50%;left:50%;top:50%}
+    .app-list{display:grid;gap:10px}.app-card{padding:14px;border:1px solid var(--color-line);border-radius:16px;background:rgba(255,255,255,.035)}
+    .app-card-head{display:flex;align-items:center;gap:8px;color:var(--color-muted);font-size:.72rem;margin-bottom:8px}.dot{width:8px;height:8px;border-radius:50%;background:var(--color-accent)}
+    .taskline{display:flex;align-items:center;gap:10px}.check{width:20px;height:20px;border:1px solid rgba(168,121,255,.45);border-radius:50%;display:grid;place-items:center;color:var(--color-accent)}
+    .story{position:relative;min-height:360px;overflow:hidden;border-radius:30px;border:1px solid var(--color-line);background:rgba(255,255,255,.025)}
+    .story-track{display:flex;width:400%;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+    .story-slide{width:25%;padding:clamp(26px,5vw,64px);display:grid;grid-template-columns:.8fr 1.2fr;gap:28px;align-items:center;min-height:360px}
+    .story-no{font-size:.72rem;letter-spacing:.18em;color:var(--color-accent-soft);text-transform:uppercase}
+    .story-demo{border:1px solid var(--color-line);border-radius:22px;padding:20px;background:#242121;min-height:210px}
+    .story-nav{position:absolute;right:18px;bottom:18px;display:flex;gap:8px}.story-nav button{width:38px;height:38px;border-radius:50%;border:1px solid var(--color-line);background:#302c2b;color:#fff;cursor:pointer}
+    .final-cta{text-align:center;padding:clamp(50px,8vw,90px);border:1px solid rgba(168,121,255,.2);border-radius:36px;background:radial-gradient(circle at 50% 0%,rgba(168,121,255,.14),transparent 55%),rgba(255,255,255,.025)}
+    .final-cta h2{max-width:850px;margin:12px auto 18px}.final-cta p{max-width:680px;margin:0 auto;color:var(--color-muted);font-size:var(--fs-md);line-height:1.7}
+    @media(max-width:1024px){.shared-stage{grid-template-columns:1fr}.category-row{grid-template-columns:1fr 1fr}.sales-strip{grid-template-columns:1fr 1fr}.phone{transform:none}.story-slide{grid-template-columns:1fr}}
+    @media(max-width:600px){.category-row,.sales-strip{grid-template-columns:1fr}.phone-screen{min-height:570px}.mmap-stage{height:410px}}
+</style>
 </head>
 <body>
 <header id="site-header">
@@ -240,10 +274,10 @@
         <a href="#idee">Idee</a>
         <a href="#universe">Universe</a>
         <a href="#funktionen">Funktionen</a>
-        <a href="#beta">Beta</a>
+        <a href="#shared">Shared</a>
         <a href="#kontakt">Kontakt</a>
       </div>
-      <a class="header-cta" href="#beta">Beta testen</a>
+      <a class="header-cta" href="#app">App entdecken</a>
     </nav>
   </div>
 </header>
@@ -255,7 +289,7 @@
       <h1>Schreib es einfach.<br>MemVerse merkt sich den Rest.</h1>
       <p class="lead">Termine, Aufgaben, Einkaufslisten, Erinnerungen und Menschen – alles läuft über einen einzigen Chat. MemVerse versteht, was du meinst, und ordnet es automatisch in dein persönliches Universum ein.</p>
       <div class="actions">
-        <a class="btn primary" href="#beta">Jetzt für die Beta vormerken</a>
+        <a class="btn primary" href="#shared">Shared entdecken</a>
         <a class="btn secondary" href="#idee">So funktioniert's</a>
       </div>
     </div>
@@ -354,6 +388,74 @@
     </div>
   </section>
 
+  <section id="app" class="wrap section">
+    <div class="section-head reveal">
+      <div class="eyebrow">Alles an seinem Platz</div>
+      <h2>Ein Satz reicht. MemVerse macht daraus etwas Nutzbares.</h2>
+      <p>Du musst vorher nicht entscheiden, in welche App oder welchen Ordner etwas gehört. MemVerse strukturiert den Inhalt und macht ihn anschließend über Chat, Karten und Universe wieder erreichbar.</p>
+    </div>
+    <div class="category-stage">
+      <div class="category-row">
+        <article class="card category-tile reveal"><div class="icon">✓</div><div><b>Aufgaben</b><span>Erstellen, wiederfinden, erledigen – privat oder gemeinsam.</span></div></article>
+        <article class="card category-tile reveal"><div class="icon">🛒</div><div><b>Einkaufslisten</b><span>Artikel gemeinsam ergänzen und abhaken, ohne Nachrichten hin und her zu schicken.</span></div></article>
+        <article class="card category-tile reveal"><div class="icon">◷</div><div><b>Termine & Reminder</b><span>Aus natürlicher Sprache werden strukturierte Erinnerungen mit Zeitbezug.</span></div></article>
+        <article class="card category-tile reveal"><div class="icon">✦</div><div><b>Erinnerungen</b><span>Menschen, Vorlieben, Wünsche, Orte und Notizen bleiben im Kontext verbunden.</span></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="shared" class="wrap section">
+    <div class="shared-stage">
+      <div class="shared-copy reveal">
+        <div class="eyebrow">Shared Premium · MMap</div>
+        <h2>Gemeinsam organisiert. Ohne dein privates Gedächtnis zu teilen.</h2>
+        <p class="lead">Teile genau die Einkaufslisten, Aufgaben, Termine, Erinnerungen und Karten, die ihr gemeinsam braucht. Beide sehen denselben aktuellen Stand – während dein persönliches MemVerse privat und lokal bleibt.</p>
+        <div class="price">1 Owner + 1 Partner · Partner kostenlos</div>
+        <div class="bullet-list">
+          <div class="bullet"><i></i><span><strong>Gemeinsame Einkaufslisten:</strong> hinzufügen, ändern und abhaken.</span></div>
+          <div class="bullet"><i></i><span><strong>Gemeinsame Aufgaben:</strong> erledigen und wieder öffnen.</span></div>
+          <div class="bullet"><i></i><span><strong>Gemeinsame Erinnerungen:</strong> nur ausdrücklich freigegebene Inhalte landen in der MMap.</span></div>
+          <div class="bullet"><i></i><span><strong>Eine Oberfläche:</strong> Universe, Karten, Listen, Aufgaben, Suche und Aktivität.</span></div>
+        </div>
+      </div>
+
+      <div class="phone reveal">
+        <div class="phone-screen">
+          <div class="appbar"><div class="appbar-row"><div class="hub">⌘</div><div><strong>MMap</strong><small>2 Mitglieder · 12 geteilte Inhalte</small></div></div></div>
+          <div class="app-tabs">
+            <button class="app-tab active" data-panel="universe">UNIVERSE</button><button class="app-tab" data-panel="cards">KARTEN</button><button class="app-tab" data-panel="lists">LISTEN</button><button class="app-tab" data-panel="tasks">AUFGABEN</button><button class="app-tab" data-panel="search">SUCHE</button>
+          </div>
+          <div class="app-panel active" id="panel-universe"><div class="mmap-stage">
+            <div class="mmap-orbit"></div>
+            <div class="mmap-line" style="width:130px;transform:rotate(-90deg)"></div><div class="mmap-line" style="width:150px;transform:rotate(-25deg)"></div><div class="mmap-line" style="width:150px;transform:rotate(25deg)"></div><div class="mmap-line" style="width:130px;transform:rotate(90deg)"></div><div class="mmap-line" style="width:150px;transform:rotate(155deg)"></div>
+            <div class="mmap-center">MMap</div>
+            <div class="mmap-node" style="left:50%;top:23%;--s:.82;--a:.72;--z:1;border-color:#e0a85e">Einkauf</div>
+            <div class="mmap-node" style="left:79%;top:39%;--s:.92;--a:.86;--z:2;border-color:#82b8ff">Aufgaben</div>
+            <div class="mmap-node" style="left:76%;top:68%;--s:1;--a:1;--z:4;border-color:#d48cff">Termine</div>
+            <div class="mmap-node" style="left:50%;top:77%;--s:1;--a:1;--z:4;border-color:#8dd7b2">Notizen</div>
+            <div class="mmap-node" style="left:22%;top:58%;--s:.92;--a:.86;--z:2;border-color:#ff9f9f">Familie</div>
+          </div></div>
+          <div class="app-panel" id="panel-cards"><div class="app-list"><div class="app-card"><div class="app-card-head"><span class="dot"></span>Einkauf · Bearbeiten erlaubt</div><b>Grillabend am Samstag</b><p class="small">Gemeinsame Notiz mit allen wichtigen Dingen.</p></div><div class="app-card"><div class="app-card-head"><span class="dot"></span>Erinnerung</div><b>Geschenkidee merken</b></div></div></div>
+          <div class="app-panel" id="panel-lists"><div class="app-list"><div class="app-card"><div class="app-card-head"><span class="dot"></span>Einkauf · 5 Artikel</div><div class="taskline"><span class="check">✓</span><span>Milch</span></div><div class="taskline"><span class="check"></span><span>Brot</span></div><div class="taskline"><span class="check"></span><span>Tomaten</span></div><div class="taskline"><span class="check">✓</span><span>Wasser</span></div></div></div></div>
+          <div class="app-panel" id="panel-tasks"><div class="app-list"><div class="app-card"><div class="taskline"><span class="check"></span><div><b>Paket abholen</b><div class="small">Heute · gemeinsam</div></div></div></div><div class="app-card"><div class="taskline"><span class="check">✓</span><div><b>Einkauf erledigen</b><div class="small">ERLEDIGT</div></div></div></div></div></div>
+          <div class="app-panel" id="panel-search"><div class="app-card">⌕ &nbsp; MMap durchsuchen…</div><div class="app-list" style="margin-top:12px"><div class="app-card"><div class="app-card-head"><span class="dot"></span>Treffer in Einkauf</div><b>Tomaten</b></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <div class="story reveal">
+      <div class="story-track" id="story-track">
+        <div class="story-slide"><div><div class="story-no">01 · Schreiben</div><h2>„Wir brauchen Milch, Brot und Eier.“</h2><p class="lead">Schreib einfach, was dir gerade durch den Kopf geht.</p></div><div class="story-demo"><div class="bubble user" style="margin-top:45px">Wir brauchen Milch, Brot und Eier.</div></div></div>
+        <div class="story-slide"><div><div class="story-no">02 · Verstehen</div><h2>MemVerse erkennt den Kontext.</h2><p class="lead">Aus dem Satz wird automatisch eine strukturierte Einkaufsliste.</p></div><div class="story-demo"><div class="app-card"><div class="app-card-head"><span class="dot"></span>EINKAUFSLISTE ERKANNT</div><b>3 Artikel hinzugefügt</b><p class="small">Milch · Brot · Eier</p></div></div></div>
+        <div class="story-slide"><div><div class="story-no">03 · Verbinden</div><h2>Im Universe bleibt alles auffindbar.</h2><p class="lead">Der Inhalt erscheint in der passenden Kategorie und bleibt mit deinem Memory Space verbunden.</p></div><div class="story-demo" style="display:grid;place-items:center"><div class="mmap-center" style="position:relative;left:auto;top:auto;transform:none">Einkauf</div></div></div>
+        <div class="story-slide"><div><div class="story-no">04 · Teilen</div><h2>Einmal freigeben. Gemeinsam weiterführen.</h2><p class="lead">Ausgewählte Inhalte erscheinen in eurer MMap und können gemeinsam genutzt werden.</p></div><div class="story-demo"><div class="app-card"><div class="app-card-head"><span class="dot"></span>MMap · synchronisiert</div><b>Gemeinsame Einkaufsliste</b><p class="small">2 Mitglieder · aktuell</p></div></div></div>
+      </div>
+      <div class="story-nav"><button id="story-prev" aria-label="Zurück">←</button><button id="story-next" aria-label="Weiter">→</button></div>
+    </div>
+  </section>
+
   <section id="funktionen" class="wrap section">
     <div class="section-head reveal">
       <div class="eyebrow">MemVerse im Alltag</div>
@@ -386,28 +488,12 @@
     </div>
   </section>
 
-  <section id="beta" class="wrap section">
-    <div class="beta reveal">
-      <div>
-        <div class="eyebrow">Beta</div>
-        <h2>Sei von Anfang an dabei.</h2>
-        <p class="lead">MemVerse befindet sich aktuell in aktiver Entwicklung. Trag dich unverbindlich für die Beta ein und erlebe dein persönliches Memory Universe, bevor alle anderen es tun.</p>
-        <p class="small">Deine Angaben werden ausschließlich zur Kontaktaufnahme für den MemVerse-Beta-Test verwendet.</p>
-      </div>
-
-      <form action="https://formsubmit.co/memverse.app@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="Anmeldung zum MemVerse Beta-Test">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <label><span class="small">Name oder Alias</span><input name="name" autocomplete="name" required></label>
-        <label><span class="small">E-Mail</span><input type="email" name="email" autocomplete="email" required></label>
-        <label><span class="small">Nachricht (optional)</span><textarea name="message" placeholder="Warum möchtest du MemVerse testen?"></textarea></label>
-        <label class="small" style="display:flex;gap:10px;align-items:flex-start">
-          <input type="checkbox" name="privacy-consent" value="accepted" required style="width:auto;min-height:auto;margin-top:4px">
-          <span>Ich habe die <a href="privacy.html" target="_blank" rel="noopener" style="color:var(--color-accent-soft)">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Angaben zur Beta-Kontaktaufnahme zu.</span>
-        </label>
-        <button class="btn primary" type="submit">Jetzt für die Beta vormerken</button>
-      </form>
+  <section class="wrap section">
+    <div class="final-cta reveal">
+      <div class="eyebrow">Your memories. Connected.</div>
+      <h2>Weniger organisieren. Mehr einfach festhalten.</h2>
+      <p>MemVerse bringt Chat, persönliches Memory Universe und gemeinsames Organisieren in eine Oberfläche – damit Informationen nicht mehr zwischen Notiz-App, Messenger, Aufgabenliste und deinem Kopf verloren gehen.</p>
+      <div class="actions" style="justify-content:center"><a class="btn primary" href="#idee">MemVerse entdecken</a><a class="btn secondary" href="#shared">Shared ansehen</a></div>
     </div>
   </section>
 
@@ -416,7 +502,7 @@
       <div>
         <div class="eyebrow">Kontakt</div>
         <h2 style="margin-bottom:10px">Deep Orbit Studios</h2>
-        <p class="lead" style="margin-bottom:0">Fragen zu MemVerse oder zur Beta? Schreib an <a href="mailto:memverse.app@gmail.com" style="color:var(--color-accent-soft)">memverse.app@gmail.com</a>.</p>
+        <p class="lead" style="margin-bottom:0">Fragen zu MemVerse? Schreib an <a href="mailto:memverse.app@gmail.com" style="color:var(--color-accent-soft)">memverse.app@gmail.com</a>.</p>
       </div>
       <img src="assets/memverse-app-icon.png" alt="" width="76" height="76" style="border-radius:20px;opacity:.92">
     </div>
@@ -469,6 +555,19 @@
     shell.addEventListener('pointerleave',()=>shell.querySelector('svg').style.transform='translate(0,0)');
     shell.querySelector('svg').style.transition='transform .35s ease-out';
   }
+
+  document.querySelectorAll('.app-tab').forEach(tab=>tab.addEventListener('click',()=>{
+    document.querySelectorAll('.app-tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.app-panel').forEach(x=>x.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-'+tab.dataset.panel)?.classList.add('active');
+  }));
+
+  let storyIndex=0;
+  const storyTrack=document.getElementById('story-track');
+  const updateStory=()=>storyTrack.style.transform='translateX(-'+(storyIndex*25)+'%)';
+  document.getElementById('story-next')?.addEventListener('click',()=>{storyIndex=(storyIndex+1)%4;updateStory()});
+  document.getElementById('story-prev')?.addEventListener('click',()=>{storyIndex=(storyIndex+3)%4;updateStory()});
 </script>
 </body>
 </html>
