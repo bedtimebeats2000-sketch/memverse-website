@@ -3,119 +3,233 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MemVerse — Your memories. Connected.</title>
-  <meta name="description" content="MemVerse verbindet Erinnerungen, Aufgaben, Vorlieben, Termine und Beziehungen in einem persönlichen Memory Universe.">
+  <title>MemVerse — Dein persönliches Memory Universe</title>
+  <meta name="description" content="MemVerse verbindet Erinnerungen, Aufgaben, Einkaufslisten, Termine und Menschen über einen einzigen Chat in deinem persönlichen Memory Universe.">
   <meta name="theme-color" content="#2B2828">
   <link rel="icon" type="image/png" href="assets/memverse-app-icon.png">
   <style>
     :root{
-      --bg:#262322;
-      --bg2:#302b29;
-      --surface:#332e2b;
-      --surface2:#3a3431;
-      --text:#f5f2f0;
-      --muted:#bdb4b0;
-      --violet:#a46cff;
-      --violet2:#d8b8ff;
-      --line:rgba(255,255,255,.08);
-      --shadow:0 28px 70px rgba(0,0,0,.28);
+      --color-bg:#211f1f;
+      --color-bg-soft:#2b2828;
+      --color-surface:rgba(255,255,255,.045);
+      --color-surface-strong:rgba(255,255,255,.07);
+      --color-text:#f7f4f2;
+      --color-muted:#bdb5b2;
+      --color-accent:#a879ff;
+      --color-accent-soft:#d7c2ff;
+      --color-glow:rgba(168,121,255,.30);
+      --color-line:rgba(255,255,255,.09);
+      --shadow-lg:0 32px 90px rgba(0,0,0,.34);
+      --radius-xl:32px;
+      --radius-lg:24px;
+      --radius-md:18px;
+      --container:min(1280px,calc(100% - clamp(32px,7vw,96px)));
+      --fs-xs:clamp(.72rem,.68rem + .1vw,.82rem);
+      --fs-sm:clamp(.9rem,.84rem + .18vw,1rem);
+      --fs-md:clamp(1rem,.92rem + .28vw,1.16rem);
+      --fs-lg:clamp(1.35rem,1.12rem + .9vw,2rem);
+      --fs-xl:clamp(2.1rem,1.55rem + 2vw,3.8rem);
+      --fs-3xl:clamp(2.9rem,2rem + 4.8vw,6.4rem);
     }
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--color-text);
+      font-family:Inter,"General Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       background:
-        radial-gradient(circle at 75% 10%, rgba(164,108,255,.14), transparent 26rem),
-        radial-gradient(circle at 18% 24%, rgba(216,184,255,.06), transparent 24rem),
-        linear-gradient(180deg,var(--bg2),var(--bg));
-      color:var(--text);
+        radial-gradient(circle at 15% 8%,rgba(168,121,255,.12),transparent 30rem),
+        radial-gradient(circle at 86% 18%,rgba(255,195,133,.06),transparent 26rem),
+        linear-gradient(180deg,#2d2928 0%,var(--color-bg) 38%,#1f1d1d 100%);
       min-height:100vh;
+      overflow-x:hidden;
     }
+
+    body::before{
+      content:"";
+      position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.18;
+      background-image:
+        linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+      background-size:64px 64px;
+      mask-image:linear-gradient(to bottom,rgba(0,0,0,.8),transparent 88%);
+    }
+
     a{color:inherit;text-decoration:none}
-    .wrap{width:min(1160px,calc(100% - 32px));margin:auto}
+    button,input,textarea{font:inherit}
+    .wrap{width:var(--container);margin-inline:auto}
+
     header{
-      position:sticky;top:0;z-index:30;
-      background:rgba(38,35,34,.78);
-      backdrop-filter:blur(18px);
-      border-bottom:1px solid var(--line);
+      position:sticky;top:0;z-index:50;
+      background:rgba(33,31,31,.66);
+      backdrop-filter:blur(20px) saturate(140%);
+      border-bottom:1px solid var(--color-line);
+      transition:.3s ease;
     }
-    nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:20px}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:750}
-    .brand img{
-      width:42px;height:42px;object-fit:contain;
-      border-radius:10px;
-      background:transparent;
-      box-shadow:none;
-      display:block;
+    header.compact nav{height:60px}
+    nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px;transition:.3s ease}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:-.02em}
+    .brand img{width:42px;height:42px;border-radius:12px}
+    .navlinks{display:flex;gap:28px;color:var(--color-muted);font-size:.92rem}
+    .navlinks a{transition:.2s ease}.navlinks a:hover{color:var(--color-text)}
+    .header-cta{padding:11px 16px;border:1px solid rgba(168,121,255,.34);border-radius:14px;background:rgba(168,121,255,.1);font-weight:750}
+
+    .hero{
+      min-height:calc(100vh - 76px);
+      display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+      align-items:center;gap:clamp(28px,5vw,76px);
+      padding:clamp(70px,9vw,130px) 0 80px;
     }
-    .navlinks{display:flex;gap:24px;color:var(--muted);font-size:14px}
-    .navlinks a:hover{color:var(--text)}
-    .cta{background:linear-gradient(135deg,var(--violet),#7d4ce7);padding:11px 16px;border-radius:14px;font-weight:700}
-    .hero{padding:92px 0 56px;display:grid;grid-template-columns:1.02fr .98fr;gap:52px;align-items:center}
-    .eyebrow{color:var(--violet2);font-weight:750;letter-spacing:.08em;text-transform:uppercase;font-size:12px}
-    h1{font-size:clamp(44px,6vw,78px);line-height:.98;margin:14px 0 22px;letter-spacing:-.05em}
-    .grad{background:linear-gradient(90deg,#fff,var(--violet2),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .lead{font-size:20px;line-height:1.55;color:var(--muted);max-width:650px}
-    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 18px;border-radius:14px;font-weight:750;border:1px solid var(--line)}
-    .btn.primary{background:linear-gradient(135deg,var(--violet),#7d4ce7);border:none}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      color:var(--color-accent-soft);font-size:var(--fs-xs);
+      text-transform:uppercase;letter-spacing:.18em;font-weight:800;
+    }
+    .eyebrow::before{content:"";width:28px;height:1px;background:linear-gradient(90deg,var(--color-accent),transparent)}
+    h1,h2,h3,p{margin-top:0}
+    h1{
+      font-size:var(--fs-3xl);line-height:.94;letter-spacing:-.055em;
+      margin:18px 0 24px;max-width:900px;
+    }
+    h2{font-size:var(--fs-xl);letter-spacing:-.04em;line-height:1.02;margin-bottom:18px}
+    h3{font-size:1.08rem;letter-spacing:-.02em;margin-bottom:8px}
+    .lead{font-size:var(--fs-md);line-height:1.7;color:var(--color-muted);max-width:700px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .btn{
+      min-height:48px;display:inline-flex;align-items:center;justify-content:center;
+      padding:13px 18px;border-radius:15px;font-weight:800;border:1px solid var(--color-line);
+      transition:transform .2s ease,border-color .2s ease,background .2s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn.primary{background:linear-gradient(135deg,#b083ff,#8457e8);box-shadow:0 12px 36px rgba(132,87,232,.24);border-color:transparent}
     .btn.secondary{background:rgba(255,255,255,.035)}
-    .hero-card{
-      background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
-      border:1px solid rgba(255,255,255,.09);
-      border-radius:32px;
-      padding:16px;
-      box-shadow:var(--shadow);
+
+    .universe-shell{
+      position:relative;aspect-ratio:1/1;min-height:520px;border-radius:38px;
+      background:
+        radial-gradient(circle at 50% 48%,rgba(168,121,255,.12),transparent 23%),
+        radial-gradient(circle at 50% 50%,rgba(255,255,255,.028),transparent 65%);
+      border:1px solid rgba(255,255,255,.07);box-shadow:var(--shadow-lg);overflow:hidden;
     }
-    .hero-card img{display:block;width:100%;border-radius:24px;aspect-ratio:16/11;object-fit:cover}
-    .section{padding:54px 0}
-    .section h2{font-size:34px;margin:0 0 12px;letter-spacing:-.03em}
-    .section p.intro{color:var(--muted);max-width:760px;line-height:1.6}
-    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
-    .card{background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:22px;padding:22px}
-    .card .icon{width:42px;height:42px;border-radius:13px;background:rgba(164,108,255,.15);display:grid;place-items:center;margin-bottom:14px;font-size:20px}
-    .card h3{margin:0 0 8px;font-size:18px}
-    .card p{margin:0;color:var(--muted);line-height:1.55}
-    .idea{
-      display:grid;grid-template-columns:.92fr 1.08fr;gap:28px;align-items:center;
-      background:rgba(255,255,255,.028);border:1px solid var(--line);border-radius:30px;padding:24px;
+    .universe-shell::before{
+      content:"";position:absolute;inset:8%;border-radius:50%;
+      border:1px solid rgba(255,255,255,.045);box-shadow:0 0 90px rgba(168,121,255,.08) inset;
     }
-    .idea-visual{
-      background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:24px;
-      padding:14px;
+    #memory-universe{width:100%;height:100%;display:block}
+    .orbit{fill:none;stroke:rgba(255,255,255,.06);stroke-width:1}
+    .edge{stroke:url(#edgeGlow);stroke-width:1.25;opacity:.48}
+    .edge.soft{opacity:.24}
+    .node{transform-box:fill-box;transform-origin:center;animation:pulse 4s ease-in-out infinite}
+    .node.category{animation-delay:var(--delay)}
+    .node.small{animation-duration:5s}
+    .node-label{font-size:12px;fill:#eae4e1;opacity:.88;font-weight:650;text-anchor:middle}
+    .node-label.small{font-size:9px;opacity:.58}
+    .core-glow{filter:url(#coreGlow)}
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.045)}}
+
+    .section{padding:clamp(72px,9vw,120px) 0}
+    .section-head{max-width:780px;margin-bottom:40px}
+    .section-head p{font-size:var(--fs-md);line-height:1.7;color:var(--color-muted)}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+    .reveal.visible{opacity:1;transform:none}
+
+    .chat-layout{display:grid;grid-template-columns:.92fr 1.08fr;gap:28px;align-items:center}
+    .chat-demo,.glass{
+      background:linear-gradient(180deg,rgba(255,255,255,.052),rgba(255,255,255,.026));
+      border:1px solid var(--color-line);border-radius:var(--radius-xl);box-shadow:var(--shadow-lg);
     }
-    .idea-visual img{width:100%;display:block;border-radius:18px}
-    .mini{display:flex;align-items:center;gap:13px;margin:16px 0}
-    .mini-dot{width:11px;height:11px;border-radius:50%;background:var(--violet);box-shadow:0 0 20px rgba(164,108,255,.8)}
+    .chat-demo{padding:20px}
+    .chat-window{background:rgba(19,18,18,.5);border:1px solid rgba(255,255,255,.06);border-radius:24px;padding:18px}
+    .chat-top{display:flex;align-items:center;justify-content:space-between;color:var(--color-muted);font-size:.84rem;margin-bottom:18px}
+    .dots{display:flex;gap:6px}.dots span{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18)}
+    .bubble{max-width:78%;padding:14px 16px;border-radius:18px;margin:10px 0;line-height:1.5}
+    .bubble.user{margin-left:auto;background:linear-gradient(135deg,rgba(168,121,255,.9),rgba(119,75,220,.9));color:white}
+    .bubble.ai{background:rgba(255,255,255,.055);color:var(--color-muted)}
+    .morph-card{margin-top:16px;border:1px solid rgba(168,121,255,.25);background:rgba(168,121,255,.075);border-radius:18px;padding:16px;opacity:0;transform:translateY(12px) scale(.98);transition:.45s ease}
+    .morph-card.show{opacity:1;transform:none}
+    .morph-meta{font-size:.75rem;color:var(--color-accent-soft);text-transform:uppercase;letter-spacing:.12em}
+    .morph-title{margin-top:6px;font-weight:800}
+    .morph-sub{margin-top:5px;color:var(--color-muted);font-size:.92rem}
+
+    .universe-feature{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center}
+    .universe-copy{padding:18px 0}
+    .bullet-list{display:grid;gap:14px;margin-top:24px}
+    .bullet{display:flex;gap:13px;align-items:flex-start;color:var(--color-muted)}
+    .bullet i{width:10px;height:10px;border-radius:50%;background:var(--color-accent);box-shadow:0 0 20px var(--color-glow);margin-top:8px;flex:0 0 auto}
+
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{
+      position:relative;overflow:hidden;padding:26px;border-radius:var(--radius-lg);
+      background:var(--color-surface);border:1px solid var(--color-line);backdrop-filter:blur(12px);
+      transition:transform .25s ease,border-color .25s ease,background .25s ease;
+    }
+    .card:hover{transform:translateY(-4px);border-color:rgba(168,121,255,.22);background:var(--color-surface-strong)}
+    .card::after{content:"";position:absolute;width:140px;height:140px;border-radius:50%;right:-80px;top:-80px;background:radial-gradient(circle,var(--color-glow),transparent 68%);opacity:.5}
+    .icon{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;background:rgba(168,121,255,.12);border:1px solid rgba(168,121,255,.18);margin-bottom:18px;font-size:20px}
+    .card p{color:var(--color-muted);line-height:1.62}
+
+    .xp-card{grid-column:span 1}
+    .xp-track{height:10px;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden;margin-top:18px}
+    .xp-fill{height:100%;width:0;background:linear-gradient(90deg,var(--color-accent),#d0a5ff);box-shadow:0 0 22px var(--color-glow);transition:width 1.2s cubic-bezier(.16,1,.3,1)}
+    .xp-card.visible .xp-fill{width:72%}
+
     .beta{
-      display:grid;grid-template-columns:1fr 1fr;gap:28px;
-      background:linear-gradient(135deg,rgba(164,108,255,.10),rgba(255,255,255,.025));
-      border:1px solid rgba(164,108,255,.18);border-radius:30px;padding:28px
+      display:grid;grid-template-columns:.9fr 1.1fr;gap:30px;
+      padding:30px;border-radius:34px;
+      background:
+        linear-gradient(135deg,rgba(168,121,255,.10),rgba(255,255,255,.025)),
+        rgba(255,255,255,.025);
+      border:1px solid rgba(168,121,255,.19);
+      box-shadow:var(--shadow-lg)
     }
-    form{display:grid;gap:12px}
+    form{display:grid;gap:14px}
+    label span.small{display:block;margin-bottom:7px}
     input,textarea{
-      width:100%;border-radius:14px;border:1px solid var(--line);background:#242120;color:var(--text);
-      padding:13px 14px;font:inherit;outline:none
+      width:100%;border-radius:14px;border:1px solid var(--color-line);
+      background:#242121;color:var(--color-text);padding:14px 15px;outline:none;min-height:46px;
     }
-    input:focus,textarea:focus{border-color:rgba(164,108,255,.65);box-shadow:0 0 0 3px rgba(164,108,255,.10)}
     textarea{min-height:130px;resize:vertical}
-    button{cursor:pointer;border:0;color:#fff}
-    .small{font-size:13px;color:var(--muted);line-height:1.5}
-    footer{padding:38px 0 60px;color:var(--muted);font-size:14px}
-    .footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:24px}
-    @media (max-width:860px){
-      .hero,.idea,.beta{grid-template-columns:1fr}
-      .hero{padding-top:56px}
-      .grid3{grid-template-columns:1fr}
+    input:focus,textarea:focus{border-color:rgba(168,121,255,.62);box-shadow:0 0 0 3px rgba(168,121,255,.09)}
+    button{cursor:pointer;color:white}
+    .small{font-size:.84rem;color:var(--color-muted);line-height:1.55}
+
+    .contact-card{display:flex;justify-content:space-between;gap:24px;align-items:center;padding:28px}
+    footer{padding:34px 0 56px;color:var(--color-muted);font-size:.88rem}
+    .footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid var(--color-line);padding-top:24px}
+
+    @media(max-width:1024px){
+      .hero,.chat-layout,.universe-feature,.beta{grid-template-columns:1fr}
+      .hero{min-height:auto;padding-top:76px}
+      .universe-shell{max-width:780px;width:100%;margin-inline:auto}
+      .grid3{grid-template-columns:1fr 1fr}.xp-card{grid-column:span 2}
+    }
+    @media(max-width:768px){
       .navlinks{display:none}
+      .header-cta{display:none}
+      .grid3{grid-template-columns:1fr}.xp-card{grid-column:auto}
+      .universe-shell{min-height:420px;border-radius:28px}
+      .contact-card{align-items:flex-start;flex-direction:column}
+      .hero{padding-bottom:40px}
+    }
+    @media(max-width:480px){
+      .wrap{width:min(100% - 24px,1280px)}
+      nav{height:66px}.brand img{width:38px;height:38px}
+      .universe-shell{min-height:360px}
+      .actions .btn{width:100%}
+      .section{padding:64px 0}
+      .beta{padding:20px}
+      .node-label.small{display:none}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+      .reveal{opacity:1;transform:none}
     }
   </style>
 </head>
 <body>
-<header>
+<header id="site-header">
   <div class="wrap">
     <nav>
       <a class="brand" href="#top">
@@ -124,127 +238,187 @@
       </a>
       <div class="navlinks">
         <a href="#idee">Idee</a>
+        <a href="#universe">Universe</a>
         <a href="#funktionen">Funktionen</a>
         <a href="#beta">Beta</a>
         <a href="#kontakt">Kontakt</a>
       </div>
-      <a class="cta" href="#beta">Beta testen</a>
+      <a class="header-cta" href="#beta">Beta testen</a>
     </nav>
   </div>
 </header>
 
 <main id="top">
   <section class="wrap hero">
-    <div>
-      <div class="eyebrow">Deep Orbit Studios</div>
-      <h1>Deine Erinnerungen.<br><span class="grad">Als verbundenes Universum.</span></h1>
-      <p class="lead">
-        MemVerse verbindet Erinnerungen, Personen, Vorlieben, Aufgaben, Termine und Orte in einer
-        persönlichen, visuellen Struktur. Lokal gedacht, einfach bedienbar und ohne verpflichtendes KI-Modell.
-      </p>
+    <div class="reveal">
+      <div class="eyebrow">Dein persönliches Memory Universe</div>
+      <h1>Schreib es einfach.<br>MemVerse merkt sich den Rest.</h1>
+      <p class="lead">Termine, Aufgaben, Einkaufslisten, Erinnerungen und Menschen – alles läuft über einen einzigen Chat. MemVerse versteht, was du meinst, und ordnet es automatisch in dein persönliches Universum ein.</p>
       <div class="actions">
-        <a class="btn primary" href="#beta">Für Beta vormerken</a>
-        <a class="btn secondary" href="#idee">Mehr erfahren</a>
+        <a class="btn primary" href="#beta">Jetzt für die Beta vormerken</a>
+        <a class="btn secondary" href="#idee">So funktioniert's</a>
       </div>
     </div>
-    <div class="hero-card">
-      <img src="assets/memverse-universe.png" alt="MemVerse Universe Vorschau">
+
+    <div class="universe-shell reveal" id="hero-universe">
+      <svg id="memory-universe" viewBox="0 0 700 700" aria-label="Animiertes MemVerse Memory Universe">
+        <defs>
+          <radialGradient id="coreFill"><stop offset="0%" stop-color="#d8c3ff"/><stop offset="100%" stop-color="#8d61ef"/></radialGradient>
+          <linearGradient id="edgeGlow" x1="0" x2="1"><stop offset="0%" stop-color="#a879ff" stop-opacity=".15"/><stop offset="50%" stop-color="#d7c2ff" stop-opacity=".75"/><stop offset="100%" stop-color="#a879ff" stop-opacity=".15"/></linearGradient>
+          <filter id="coreGlow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="11" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <circle class="orbit" cx="350" cy="350" r="115"/><circle class="orbit" cx="350" cy="350" r="205"/><circle class="orbit" cx="350" cy="350" r="292"/>
+        <g class="edges">
+          <line class="edge" x1="350" y1="350" x2="350" y2="140"/><line class="edge" x1="350" y1="350" x2="525" y2="235"/><line class="edge" x1="350" y1="350" x2="525" y2="465"/><line class="edge" x1="350" y1="350" x2="350" y2="565"/><line class="edge" x1="350" y1="350" x2="175" y2="465"/><line class="edge" x1="350" y1="350" x2="175" y2="235"/>
+          <line class="edge soft" x1="350" y1="140" x2="280" y2="78"/><line class="edge soft" x1="350" y1="140" x2="430" y2="78"/>
+          <line class="edge soft" x1="525" y1="235" x2="615" y2="205"/><line class="edge soft" x1="525" y1="235" x2="595" y2="310"/>
+          <line class="edge soft" x1="525" y1="465" x2="605" y2="415"/><line class="edge soft" x1="525" y1="465" x2="605" y2="535"/>
+          <line class="edge soft" x1="350" y1="565" x2="280" y2="635"/><line class="edge soft" x1="350" y1="565" x2="430" y2="635"/>
+          <line class="edge soft" x1="175" y1="465" x2="95" y2="415"/><line class="edge soft" x1="175" y1="465" x2="95" y2="535"/>
+          <line class="edge soft" x1="175" y1="235" x2="85" y2="205"/><line class="edge soft" x1="175" y1="235" x2="105" y2="310"/>
+        </g>
+        <g class="node core core-glow"><circle cx="350" cy="350" r="54" fill="url(#coreFill)"/><circle cx="350" cy="350" r="68" fill="none" stroke="#b895ff" stroke-opacity=".17"/></g><text class="node-label" x="350" y="355">ICH</text>
+        <g class="node category" style="--delay:.1s"><circle cx="350" cy="140" r="31" fill="#4b3f58" stroke="#b996ff" stroke-opacity=".35"/></g><text class="node-label" x="350" y="145">Familie</text>
+        <g class="node category" style="--delay:.2s"><circle cx="525" cy="235" r="31" fill="#463e52" stroke="#b996ff" stroke-opacity=".35"/></g><text class="node-label" x="525" y="240">Arbeit</text>
+        <g class="node category" style="--delay:.3s"><circle cx="525" cy="465" r="31" fill="#433d4e" stroke="#b996ff" stroke-opacity=".35"/></g><text class="node-label" x="525" y="470">Projekte</text>
+        <g class="node category" style="--delay:.4s"><circle cx="350" cy="565" r="31" fill="#47404f" stroke="#b996ff" stroke-opacity=".35"/></g><text class="node-label" x="350" y="570">Haushalt</text>
+        <g class="node category" style="--delay:.5s"><circle cx="175" cy="465" r="31" fill="#433d4e" stroke="#b996ff" stroke-opacity=".35"/></g><text class="node-label" x="175" y="470">Orte</text>
+        <g class="node category" style="--delay:.6s"><circle cx="175" cy="235" r="31" fill="#463e52" stroke="#b996ff" stroke-opacity=".35"/></g><text class="node-label" x="175" y="240">Einkauf</text>
+
+        <g fill="#5b4b6f">
+          <circle class="node small" cx="280" cy="78" r="12"/><circle class="node small" cx="430" cy="78" r="10"/>
+          <circle class="node small" cx="615" cy="205" r="12"/><circle class="node small" cx="595" cy="310" r="10"/>
+          <circle class="node small" cx="605" cy="415" r="11"/><circle class="node small" cx="605" cy="535" r="12"/>
+          <circle class="node small" cx="280" cy="635" r="11"/><circle class="node small" cx="430" cy="635" r="10"/>
+          <circle class="node small" cx="95" cy="415" r="12"/><circle class="node small" cx="95" cy="535" r="9"/>
+          <circle class="node small" cx="85" cy="205" r="11"/><circle class="node small" cx="105" cy="310" r="10"/>
+        </g>
+        <text class="node-label small" x="280" y="60">Person</text><text class="node-label small" x="430" y="60">Erinnerung</text>
+        <text class="node-label small" x="615" y="185">Aufgabe</text><text class="node-label small" x="595" y="292">Termin</text>
+        <text class="node-label small" x="605" y="395">Idee</text><text class="node-label small" x="605" y="558">Notiz</text>
+        <text class="node-label small" x="280" y="660">Liste</text><text class="node-label small" x="430" y="660">Reminder</text>
+        <text class="node-label small" x="95" y="395">Ort</text><text class="node-label small" x="95" y="558">Reise</text>
+        <text class="node-label small" x="85" y="185">Milch</text><text class="node-label small" x="105" y="292">Brot</text>
+      </svg>
     </div>
   </section>
 
   <section id="idee" class="wrap section">
-    <div class="idea">
-      <div class="idea-visual">
-        <img src="assets/memverse-universe.png" alt="MemVerse Universe Darstellung">
+    <div class="chat-layout">
+      <div class="chat-demo reveal">
+        <div class="chat-window">
+          <div class="chat-top"><span>MemVerse Chat</span><span class="dots"><span></span><span></span><span></span></span></div>
+          <div class="bubble ai">Was möchtest du festhalten?</div>
+          <div class="bubble user"><span id="typed-text"></span><span id="cursor">|</span></div>
+          <div class="morph-card" id="morph-card">
+            <div class="morph-meta">Automatisch erkannt · Termin</div>
+            <div class="morph-title">Zahnarzt</div>
+            <div class="morph-sub">Morgen · 15:00 Uhr · Reminder aktiv</div>
+          </div>
+        </div>
       </div>
-      <div>
-        <div class="eyebrow">Die Idee</div>
-        <h2>Ein Gedächtnis, das sichtbar wird.</h2>
-        <p class="intro">
-          Im Zentrum steht dein persönliches Memory Universe. Neue Erinnerungen erzeugen Verbindungen:
-          Personen, Wünsche, Aufgaben, Termine, Orte und Themen wachsen zu einem übersichtlichen Netz zusammen.
-        </p>
-        <div class="mini"><span class="mini-dot"></span><span>Einfach speichern und später wiederfinden</span></div>
-        <div class="mini"><span class="mini-dot"></span><span>Karten, Chat und Universe greifen auf dieselben Daten zu</span></div>
-        <div class="mini"><span class="mini-dot"></span><span>Änderungen werden überall konsistent sichtbar</span></div>
+      <div class="reveal">
+        <div class="eyebrow">So einfach wie eine Nachricht</div>
+        <h2>Kein Menü. Kein Formular. Nur ein Satz.</h2>
+        <p class="lead">„Morgen Zahnarzt um 15 Uhr.“ „Wir brauchen Milch, Brot und Eier.“ „Meine Frau mag Tulpen.“ – MemVerse erkennt automatisch, ob das eine Erinnerung, eine Aufgabe, eine Einkaufsliste oder eine Notiz ist, und legt es an genau der richtigen Stelle ab.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="universe" class="wrap section">
+    <div class="universe-feature">
+      <div class="universe-shell reveal" id="secondary-universe" style="min-height:500px">
+        <svg viewBox="0 0 700 700" aria-hidden="true">
+          <defs><radialGradient id="coreFill2"><stop offset="0%" stop-color="#d8c3ff"/><stop offset="100%" stop-color="#8d61ef"/></radialGradient><linearGradient id="edgeGlow2" x1="0" x2="1"><stop offset="0%" stop-color="#a879ff" stop-opacity=".12"/><stop offset="50%" stop-color="#d7c2ff" stop-opacity=".7"/><stop offset="100%" stop-color="#a879ff" stop-opacity=".12"/></linearGradient></defs>
+          <circle class="orbit" cx="350" cy="350" r="120"/><circle class="orbit" cx="350" cy="350" r="210"/><circle class="orbit" cx="350" cy="350" r="290"/>
+          <g stroke="url(#edgeGlow2)" stroke-width="1.3" opacity=".42">
+            <line x1="350" y1="350" x2="350" y2="150"/><line x1="350" y1="350" x2="530" y2="240"/><line x1="350" y1="350" x2="535" y2="465"/><line x1="350" y1="350" x2="350" y2="565"/><line x1="350" y1="350" x2="170" y2="465"/><line x1="350" y1="350" x2="170" y2="240"/>
+          </g>
+          <circle cx="350" cy="350" r="58" fill="url(#coreFill2)"/><text class="node-label" x="350" y="355">ICH</text>
+          <g fill="#4c4258" stroke="#b996ff" stroke-opacity=".3">
+            <circle cx="350" cy="150" r="32"/><circle cx="530" cy="240" r="32"/><circle cx="535" cy="465" r="32"/><circle cx="350" cy="565" r="32"/><circle cx="170" cy="465" r="32"/><circle cx="170" cy="240" r="32"/>
+          </g>
+          <text class="node-label" x="350" y="155">Familie</text><text class="node-label" x="530" y="245">Arbeit</text><text class="node-label" x="535" y="470">Projekte</text><text class="node-label" x="350" y="570">Haushalt</text><text class="node-label" x="170" y="470">Orte</text><text class="node-label" x="170" y="245">Einkauf</text>
+        </svg>
+      </div>
+      <div class="universe-copy reveal">
+        <div class="eyebrow">Mehr als eine Liste</div>
+        <h2>Erinnerungen, die sich verbinden.</h2>
+        <p class="lead">Im Zentrum stehst du. Darum wachsen Kategorien wie Familie, Arbeit, Haushalt oder Projekte – und darunter Personen, Aufgaben und Erinnerungen. So entsteht mit der Zeit ein sichtbares Netz aus allem, was dir wichtig ist – statt einer endlosen Liste.</p>
+        <div class="bullet-list">
+          <div class="bullet"><i></i><span>Chat, Karten und Universe greifen auf dieselben Inhalte zu.</span></div>
+          <div class="bullet"><i></i><span>Neue Einträge wachsen automatisch in die passende Struktur hinein.</span></div>
+          <div class="bullet"><i></i><span>Du findest Zusammenhänge schneller wieder, statt dich durch Ordner zu klicken.</span></div>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="funktionen" class="wrap section">
-    <div class="eyebrow">MemVerse</div>
-    <h2>Einfach statt kompliziert.</h2>
-    <p class="intro">
-      Klare Eingaben sollen direkt funktionieren. Nur wenn wirklich etwas unklar ist, fragt MemVerse kurz nach.
-    </p>
+    <div class="section-head reveal">
+      <div class="eyebrow">MemVerse im Alltag</div>
+      <h2>Ein System für das, was sonst in fünf Apps verteilt ist.</h2>
+      <p>Einkaufslisten, Aufgaben, Erinnerungen, Termine, Menschen und persönliche Notizen greifen in MemVerse ineinander – privat, gemeinsam und direkt über den Chat erreichbar.</p>
+    </div>
+
     <div class="grid3">
-      <div class="card">
-        <div class="icon">◎</div>
-        <h3>Memory Universe</h3>
-        <p>Deine Erinnerungen werden als verbundene Kategorien, Personen und Themen sichtbar.</p>
-      </div>
-      <div class="card">
-        <div class="icon">✓</div>
-        <h3>Aufgaben & Termine</h3>
-        <p>Aufgaben abhaken, Termine ändern und Erinnerungen direkt dort bearbeiten, wo du sie siehst.</p>
-      </div>
-      <div class="card">
+      <article class="card reveal">
+        <div class="icon">↗</div>
+        <div class="eyebrow">Zu zweit organisiert</div>
+        <h3>Privat bleibt privat. Geteilt wird nur, was du willst.</h3>
+        <p>Mit Shared Premium verbindest du ausgewählte Einkaufslisten, Aufgaben, Termine oder Erinnerungen mit einer anderen Person – gemeinsam bearbeitbar. Alles andere bleibt lokal und nur für dich sichtbar.</p>
+      </article>
+
+      <article class="card reveal">
         <div class="icon">⌁</div>
-        <h3>Local-first</h3>
-        <p>Die persönliche Nutzung ist lokal gedacht. Ein großes KI-Modell soll nicht notwendig sein.</p>
-      </div>
+        <div class="eyebrow">Deine Daten, dein Gerät</div>
+        <h3>Kein Konto nötig. Kein KI-Zwang.</h3>
+        <p>Für die persönliche Nutzung brauchst du kein Konto. Deine privaten Erinnerungen bleiben lokal auf deinem Gerät. Ein Login ist nur nötig, wenn du Inhalte teilen willst.</p>
+      </article>
+
+      <article class="card reveal xp-card">
+        <div class="icon">◎</div>
+        <div class="eyebrow">Dein Stil, dein Level</div>
+        <h3>Level up. Rein kosmetisch, ganz persönlich.</h3>
+        <p>Für deine Nutzung wächst dein Level. Neue Farben, Designs und Darstellungsoptionen schalten sich frei – ohne funktionale Vorteile oder Pay-to-Win.</p>
+        <div class="xp-track"><div class="xp-fill"></div></div>
+      </article>
     </div>
   </section>
 
   <section id="beta" class="wrap section">
-    <div class="beta">
+    <div class="beta reveal">
       <div>
         <div class="eyebrow">Beta</div>
-        <h2>MemVerse mit testen.</h2>
-        <p class="intro">
-          MemVerse befindet sich in Entwicklung. Wenn du beim Beta-Test dabei sein möchtest, kannst du dich hier unverbindlich vormerken.
-        </p>
-        <p class="small">
-          Deine Angaben werden ausschließlich zur Kontaktaufnahme für den MemVerse-Beta-Test verwendet.
-        </p>
+        <h2>Sei von Anfang an dabei.</h2>
+        <p class="lead">MemVerse befindet sich aktuell in aktiver Entwicklung. Trag dich unverbindlich für die Beta ein und erlebe dein persönliches Memory Universe, bevor alle anderen es tun.</p>
+        <p class="small">Deine Angaben werden ausschließlich zur Kontaktaufnahme für den MemVerse-Beta-Test verwendet.</p>
       </div>
 
       <form action="https://formsubmit.co/memverse.app@gmail.com" method="POST">
         <input type="hidden" name="_subject" value="Anmeldung zum MemVerse Beta-Test">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
-        <label>
-          <span class="small">Name oder Alias</span>
-          <input name="name" autocomplete="name" required>
-        </label>
-        <label>
-          <span class="small">E-Mail</span>
-          <input type="email" name="email" autocomplete="email" required>
-        </label>
-        <label>
-          <span class="small">Nachricht (optional)</span>
-          <textarea name="message" placeholder="Warum möchtest du MemVerse testen?"></textarea>
-        </label>
+        <label><span class="small">Name oder Alias</span><input name="name" autocomplete="name" required></label>
+        <label><span class="small">E-Mail</span><input type="email" name="email" autocomplete="email" required></label>
+        <label><span class="small">Nachricht (optional)</span><textarea name="message" placeholder="Warum möchtest du MemVerse testen?"></textarea></label>
         <label class="small" style="display:flex;gap:10px;align-items:flex-start">
-          <input type="checkbox" name="privacy-consent" value="accepted" required style="width:auto;margin-top:4px">
-          <span>Ich habe die <a href="privacy.html" target="_blank" rel="noopener" style="color:var(--violet2)">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Angaben zur Beta-Kontaktaufnahme zu.</span>
+          <input type="checkbox" name="privacy-consent" value="accepted" required style="width:auto;min-height:auto;margin-top:4px">
+          <span>Ich habe die <a href="privacy.html" target="_blank" rel="noopener" style="color:var(--color-accent-soft)">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Angaben zur Beta-Kontaktaufnahme zu.</span>
         </label>
-        <button class="btn primary" type="submit">Für Beta vormerken</button>
+        <button class="btn primary" type="submit">Jetzt für die Beta vormerken</button>
       </form>
     </div>
   </section>
 
   <section id="kontakt" class="wrap section">
-    <div class="card">
-      <div class="eyebrow">Kontakt</div>
-      <h2>Deep Orbit Studios</h2>
-      <p class="intro">
-        Fragen zu MemVerse oder zur Beta? Schreib an
-        <a href="mailto:memverse.app@gmail.com" style="color:var(--violet2)">memverse.app@gmail.com</a>.
-      </p>
-      <p class="small">
-        Betreiber/Entwicklerauftritt: Deep Orbit Studios · MemVerse befindet sich derzeit in Entwicklung.
-      </p>
+    <div class="glass contact-card reveal">
+      <div>
+        <div class="eyebrow">Kontakt</div>
+        <h2 style="margin-bottom:10px">Deep Orbit Studios</h2>
+        <p class="lead" style="margin-bottom:0">Fragen zu MemVerse oder zur Beta? Schreib an <a href="mailto:memverse.app@gmail.com" style="color:var(--color-accent-soft)">memverse.app@gmail.com</a>.</p>
+      </div>
+      <img src="assets/memverse-app-icon.png" alt="" width="76" height="76" style="border-radius:20px;opacity:.92">
     </div>
   </section>
 </main>
@@ -252,8 +426,49 @@
 <footer>
   <div class="wrap footer-row">
     <span>© 2026 Deep Orbit Studios</span>
-    <span><a href="privacy.html">Datenschutz</a> · <a href="delete-account.html">Konto löschen</a> · MemVerse — Your memories. Connected.</span>
+    <span><a href="privacy.html">Datenschutz</a> · <a href="data-deletion.html">Daten löschen</a> · <a href="delete-account.html">Konto löschen</a> · MemVerse — Your memories. Connected.</span>
   </div>
 </footer>
+
+<script>
+  const header=document.getElementById('site-header');
+  addEventListener('scroll',()=>header.classList.toggle('compact',scrollY>32),{passive:true});
+
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}
+    });
+  },{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+  const text='Morgen Zahnarzt um 15 Uhr.';
+  const typed=document.getElementById('typed-text');
+  const morph=document.getElementById('morph-card');
+  let started=false;
+  const chatObserver=new IntersectionObserver(entries=>{
+    if(entries.some(e=>e.isIntersecting)&&!started){
+      started=true;let i=0;
+      const tick=()=>{
+        typed.textContent=text.slice(0,i++);
+        if(i<=text.length){setTimeout(tick,58)}
+        else{setTimeout(()=>morph.classList.add('show'),280)}
+      };
+      tick();
+    }
+  },{threshold:.4});
+  chatObserver.observe(document.querySelector('.chat-demo'));
+
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    const shell=document.getElementById('hero-universe');
+    shell.addEventListener('pointermove',e=>{
+      const r=shell.getBoundingClientRect();
+      const x=((e.clientX-r.left)/r.width-.5)*10;
+      const y=((e.clientY-r.top)/r.height-.5)*10;
+      shell.querySelector('svg').style.transform='translate('+x+'px,'+y+'px)';
+    });
+    shell.addEventListener('pointerleave',()=>shell.querySelector('svg').style.transform='translate(0,0)');
+    shell.querySelector('svg').style.transition='transform .35s ease-out';
+  }
+</script>
 </body>
 </html>
