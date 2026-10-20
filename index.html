@@ -3,10 +3,51 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MemVerse — Weniger merken müssen. Mehr im Kopf frei haben.</title>
-<meta name="description" content="MemVerse bündelt Notizen, Erinnerungen, Termine, Einkaufslisten und persönliche Details an einem Ort. Einfach per Chat erfassen, lokal organisieren und ausgewählte Inhalte mit einer Person teilen.">
+<title>MemVerse – Erinnerungs-App, Notizen & Einkaufslisten für Android</title>
+<meta name="description" content="Notizen, Aufgaben, Termine und Einkaufslisten per Chat festhalten. MemVerse für Android: lokal nutzen, mit Premium am passenden Ort erinnern und Listen teilen.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://bedtimebeats2000-sketch.github.io/memverse-website/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="MemVerse">
+<meta property="og:title" content="MemVerse – weniger merken müssen. Mehr im Kopf frei haben.">
+<meta property="og:description" content="Deine Android-App für Notizen, Aufgaben, Termine und Einkaufslisten. Premium hilft dir am passenden Ort – Shared bringt euch gemeinsam Überblick.">
+<meta property="og:url" content="https://bedtimebeats2000-sketch.github.io/memverse-website/">
+<meta property="og:image" content="https://bedtimebeats2000-sketch.github.io/memverse-website/assets/memverse-app-icon.png">
+<meta property="og:image:alt" content="MemVerse App-Logo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MemVerse – Erinnerungs-App für Android">
+<meta name="twitter:description" content="Notizen, Aufgaben und Einkaufslisten per Chat. Lokal nutzen, am passenden Ort erinnern und ausgewählte Inhalte teilen.">
+<meta name="twitter:image" content="https://bedtimebeats2000-sketch.github.io/memverse-website/assets/memverse-app-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://bedtimebeats2000-sketch.github.io/memverse-website/#website",
+      "url": "https://bedtimebeats2000-sketch.github.io/memverse-website/",
+      "name": "MemVerse",
+      "inLanguage": "de-DE"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://bedtimebeats2000-sketch.github.io/memverse-website/#app",
+      "name": "MemVerse",
+      "url": "https://bedtimebeats2000-sketch.github.io/memverse-website/",
+      "operatingSystem": "Android",
+      "applicationCategory": "ProductivityApplication",
+      "inLanguage": "de",
+      "description": "Android-App für Notizen, Aufgaben, Termine, Erinnerungen, Einkaufslisten und persönliche Informationen. Private Kernfunktionen lokal und ohne Konto; optionale Premium-Ortsfunktionen und Shared für zwei Personen.",
+      "image": "https://bedtimebeats2000-sketch.github.io/memverse-website/assets/memverse-app-icon.png",
+      "featureList": ["Notizen und Aufgaben per Chat", "Termine und Erinnerungen", "Einkaufslisten", "Personenkarten", "Kostenlose Startbildschirm-Widgets", "Optionale Premium-Erinnerungen an gespeicherten Orten", "Shared für zwei Personen mit einem Abo"],
+      "creator": {"@type": "Organization", "name": "Deep Orbit Studios", "email": "memverse.app@gmail.com"}
+    }
+  ]
+}
+</script>
 <meta name="theme-color" content="#0b0914">
-<link rel="icon" href="assets/memverse-app-icon.png">
+<link rel="icon" href="assets/memverse-icon-96.png">
 <style>
 :root{
   --bg:#090812;--bg2:#0f0d1b;--surface:rgba(22,19,38,.80);--surface2:#151223;
@@ -15,7 +56,12 @@
   --shadow:0 30px 80px rgba(0,0,0,.34);--max:1240px
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+:focus-visible{outline:3px solid var(--violet2);outline-offset:5px}
+.skip-link{position:fixed;left:12px;top:-100px;z-index:100;padding:12px 18px;background:var(--bg);border:2px solid var(--violet2);border-radius:12px}
+.skip-link:focus{top:12px}
+.hero h1{font-size:clamp(2.6rem,5.4vw,5.2rem);line-height:1.02}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
 body{
   margin:0;color:var(--text);
   font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
@@ -180,18 +226,19 @@ footer{padding:44px 0;color:#9c95a8;font-size:.86rem}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#top">Zum Inhalt</a>
 <header>
   <div class="wrap">
     <nav>
-      <a class="brand" href="#top"><img src="assets/memverse-app-icon.png" alt="MemVerse"><span>MemVerse</span></a>
+      <a class="brand" href="#top"><img src="assets/memverse-icon-96.png" width="40" height="40" alt="MemVerse"><span>MemVerse</span></a>
       <div class="navlinks">
         <a href="#chat">Chat</a>
-        <a href="#shared">Shared</a>
-        <a href="#personen">Personen</a>
+        <a href="#premium">Premium</a>
+        <a href="#widgets">Widgets</a>
         <a href="#universe">MMap</a>
         <a href="#faq">FAQ</a>
       </div>
-      <a class="btn primary" href="#shared">Shared entdecken</a>
+      <a class="btn primary" href="#testen">Beta testen</a>
     </nav>
   </div>
 </header>
@@ -199,22 +246,22 @@ footer{padding:44px 0;color:#9c95a8;font-size:.86rem}
 <main id="top">
 <section class="wrap hero">
   <div>
-    <div class="eyebrow">Dein persönliches Gedächtnis</div>
-    <h1>Weniger merken müssen.<br><span>Mehr im Kopf frei haben.</span></h1>
-    <p class="lead">MemVerse bündelt Notizen, Aufgaben, Termine, Einkaufslisten und persönliche Details an einem Ort. Du schreibst einfach, was du nicht vergessen willst – MemVerse strukturiert den Rest.</p>
+    <div class="eyebrow">Dein persönliches Gedächtnis für Android</div>
+    <h1>Deine Erinnerungs-App.<br><span>Mehr im Kopf frei haben.</span></h1>
+    <p class="lead">Notizen, Aufgaben, Termine und Einkaufslisten: Halte per Chat fest, was du nicht vergessen willst. MemVerse bringt Ordnung in deinen Alltag – mit privaten Kernfunktionen, die lokal und ohne Konto funktionieren.</p>
     <div class="hero-actions">
-      <a class="btn primary" href="#chat">So funktioniert es</a>
-      <a class="btn ghost" href="#shared">Shared Premium ansehen</a>
+      <a class="btn primary" href="#testen">Android-Beta anfragen</a>
+      <a class="btn ghost" href="#premium">MemVerse Premium ansehen</a>
     </div>
     <div class="microproofs">
-      <span class="chip">Local-first</span>
+      <span class="chip">Privat auf deinem Gerät</span>
       <span class="chip">Per Chat erfassen</span>
-      <span class="chip">Shared Memory für zwei</span>
-      <span class="chip">Rewards & Fortschritt</span>
+      <span class="chip">Kostenlose Widgets</span>
+      <span class="chip">Alleine und gemeinsam</span>
     </div>
   </div>
 
-  <div class="hero-visual" aria-label="MemVerse App Vorschau">
+  <div class="hero-visual" role="img" aria-label="Illustration: MemVerse erfasst Termine, persönliche Details und Einkaufsartikel per Chat. Shared zeigt ausgewählte Inhalte für zwei Personen.">
     <div class="glow"></div>
     <div class="device main">
       <div class="screen">
@@ -234,7 +281,7 @@ footer{padding:44px 0;color:#9c95a8;font-size:.86rem}
       <div class="screen">
         <div class="apphead"><span class="mini">M</span>Shared <span class="status">● VERBUNDEN</span></div>
         <div class="sharedcard">
-          <small>SHARED PREMIUM</small>
+          <small>MEMVERSE PREMIUM · SHARED</small>
           <h3>Gemeinsam im Blick</h3>
           <div class="sharedrow">Einkaufsliste · 8 offen</div>
           <div class="sharedrow">Zahnarzt · morgen 15:00</div>
@@ -250,13 +297,13 @@ footer{padding:44px 0;color:#9c95a8;font-size:.86rem}
 <section class="wrap section">
   <div class="section-head">
     <div class="eyebrow">Warum MemVerse?</div>
-    <h2>Eine zentrale Anlaufstelle für das, was sonst im Kopf bleibt.</h2>
+    <h2>Notizen, Aufgaben und Termine an einem Ort.</h2>
     <p>Wichtige Informationen liegen oft verteilt in Chats, Notizen, Kalendern und Gedanken. MemVerse bringt sie zusammen – ohne komplizierte Eingabemasken.</p>
   </div>
   <div class="grid-3">
     <article class="card"><div class="icon">✦</div><h3>Schnell festhalten</h3><p>Einfach schreiben wie in einem Chat. MemVerse erkennt, ob es eine Notiz, Aufgabe, Erinnerung, ein Termin oder eine Einkaufsliste ist.</p><div class="featureline"><b>Weniger Tippen.</b> Weniger Menüs.</div></article>
     <article class="card"><div class="icon">◎</div><h3>Wiederfinden statt suchen</h3><p>Automatische Kategorien, Personenbezug und MMap-Struktur machen Erinnerungen später leichter auffindbar.</p><div class="featureline"><b>Kein Kartenchaos.</b> Mehr Zusammenhang.</div></article>
-    <article class="card"><div class="icon">↗</div><h3>Mental Load reduzieren</h3><p>Shared bündelt gemeinsame Termine, Einkaufslisten, Erinnerungen und wichtige Infos an einem Ort.</p><div class="featureline"><b>Gemeinsam wissen,</b> statt doppelt nachfragen.</div></article>
+    <article class="card"><div class="icon">↗</div><h3>Weniger im Kopf behalten</h3><p>Eine Gedächtnisstütze für den Alltag: Sammle deine Aufgaben, plane Termine mit Erinnerung und hake Einkäufe ab.</p><div class="featureline"><b>Ein Überblick</b> für deine nächsten Schritte.</div></article>
   </div>
 </section>
 
@@ -292,13 +339,43 @@ footer{padding:44px 0;color:#9c95a8;font-size:.86rem}
   </div>
 </section>
 
+<section id="widgets" class="wrap section">
+  <div class="section-head">
+    <div class="eyebrow">Kostenlose Android-Widgets</div>
+    <h2>Ein Gedanke. Direkt festgehalten.</h2>
+    <p>Die zwei MemVerse-Widgets bringen schnelle Eingabe und deinen nächsten Schritt auf den Startbildschirm – auch ohne Premium.</p>
+  </div>
+  <div class="trust">
+    <div><h3>Quick Chat: schneller zur Eingabe</h3><p>Tippe auf das Widget und schreibe deinen Gedanken direkt auf. Falls noch eine Rückfrage offen ist, führst du sie im gleichen MemVerse-Chat weiter.</p></div>
+    <div><h3>Focus: eine Sache im Blick</h3><p>Sieh einen relevanten offenen Eintrag und wähle „Erledigt“, „Später“ oder den nächsten Eintrag. „Später“ blendet ihn im Widget vorübergehend aus; dein gespeicherter Termin bleibt bestehen.</p></div>
+  </div>
+</section>
+
+<section id="premium" class="wrap section">
+  <div class="shared">
+    <div class="section-head">
+      <div class="eyebrow">MemVerse Premium</div>
+      <h2>Erinnere dich dort, wo du etwas erledigen kannst.</h2>
+      <p>Premium hilft dir schon alleine: MemVerse kann passende offene Dinge an Orten hervorheben, die du selbst gespeichert hast. Und wenn ihr euren Alltag gemeinsam organisieren möchtet, ist Shared ebenfalls dabei.</p>
+    </div>
+    <div class="grid-3">
+      <article class="card"><div class="icon" aria-hidden="true">◎</div><h3>Einkauf am passenden Ort</h3><p>Du bist bei deinem gespeicherten Geschäft? MemVerse kann dich an noch offene Einkäufe erinnern, damit dir die Liste rechtzeitig wieder einfällt.</p></article>
+      <article class="card"><div class="icon" aria-hidden="true">⌂</div><h3>Zuhause und unterwegs mitdenken</h3><p>Speichere Orte wie Zuhause oder Arbeit freiwillig. Passende offene Aufgaben lassen sich dadurch leichter in deinem aktuellen Alltag wiederfinden.</p></article>
+      <article class="card"><div class="icon" aria-hidden="true">✓</div><h3>Du entscheidest</h3><p>Du bestimmst Orte, Hinweise und Ruhezeiten. Die Ortsfunktionen sind zunächst ausgeschaltet und werden nur mit deiner Freigabe aktiv.</p></article>
+    </div>
+    <p>Ortsabhängige Erinnerungen benötigen die passenden Standort- und Benachrichtigungsfreigaben. Ob und wann ein Hinweis ankommt, hängt auch von den Android-Einstellungen und der Standortverfügbarkeit ab. Deine normalen Notizen, Listen und Aufgaben bleiben unabhängig davon nutzbar.</p>
+    <p><a class="btn" href="#shared">Zweiter Premium-Vorteil: Shared für zwei</a></p>
+  </div>
+</section>
+
 <section id="shared" class="wrap section">
   <div class="shared">
     <div class="shared-grid">
       <div>
-        <div class="eyebrow">Shared Premium</div>
-        <h2>Weniger Mental Load. Mehr gemeinsamer Überblick.</h2>
-        <p>Shared macht aus MemVerse eine gemeinsame Gedächtnisfläche für zwei Personen. Nur das, was ihr wirklich teilen wollt, wird gemeinsam sichtbar – private Inhalte bleiben privat.</p>
+        <div class="eyebrow">In MemVerse Premium enthalten · Shared</div>
+        <h2>Einkaufslisten teilen. Gemeinsam den Überblick behalten.</h2>
+        <p>Shared verbindet genau zwei Personen. Einkaufslisten, Termine, Erinnerungen und ausgewählte Informationen könnt ihr gemeinsam nutzen. Nur bewusst freigegebene Inhalte werden geteilt.</p>
+        <p><strong>Ein Abo reicht für Shared: Dein eingeladener Partner braucht kein eigenes Abo.</strong> Persönliche Premium-Ortsfunktionen sind an das eigene Premium-Abo gebunden.</p>
         <div class="shared-benefits">
           <div class="benefit"><b>Gemeinsame Einkaufslisten</b><span>Beide sehen, was noch fehlt und was erledigt ist.</span></div>
           <div class="benefit"><b>Gemeinsame Termine</b><span>Wichtige Zeitpunkte an einem Ort statt über mehrere Chats verteilt.</span></div>
@@ -391,9 +468,13 @@ footer{padding:44px 0;color:#9c95a8;font-size:.86rem}
     <p>Die wichtigsten Fragen kurz beantwortet.</p>
   </div>
   <div class="faq">
-    <details><summary>Was ist MemVerse?</summary><p>MemVerse ist eine local-first Memory-App für Notizen, Aufgaben, Termine, Erinnerungen, Einkaufslisten und persönliche Informationen. Du kannst vieles einfach über einen einzigen Chat erfassen und später über Karten, Suche und MMap wiederfinden.</p></details>
+    <details><summary>Was ist MemVerse?</summary><p>MemVerse ist eine Erinnerungs-App und Notizen-App für Android. Sie verbindet Aufgaben, Termine, Erinnerungen, Einkaufslisten und persönliche Informationen. Du kannst vieles über einen einzigen Chat erfassen und später über Karten, Suche und MMap wiederfinden.</p></details>
     <details><summary>Was ist das Besondere am Chat?</summary><p>Du musst nicht zuerst entscheiden, ob etwas eine Aufgabe, ein Termin oder eine Notiz ist. Du schreibst natürlich, was du festhalten willst. MemVerse ordnet die Eingabe ein, erstellt passende Strukturen und fragt nach, wenn etwas unklar ist.</p></details>
-    <details><summary>Was ist Shared Premium?</summary><p>Shared Premium verbindet genau zwei Personen in einer gemeinsamen MMap. Gemeinsame Einkaufslisten, Termine, Erinnerungen und ausgewählte Informationen können zusammen genutzt werden. Der eingeladene Partner benötigt dafür kein eigenes Abo.</p></details>
+    <details><summary>Was bringt MemVerse Premium, wenn ich die App alleine nutze?</summary><p>Premium ergänzt freiwillige Ortsfunktionen: MemVerse kann passende offene Einkäufe an gespeicherten Geschäften hervorheben und Orte wie Zuhause oder Arbeit berücksichtigen. Dafür aktivierst du die Funktionen und erteilst die nötigen Freigaben selbst. Shared für zwei ist ein zusätzlicher Premium-Vorteil.</p></details>
+    <details><summary>Kann ich eine Einkaufsliste teilen? Braucht mein Partner ein Abo?</summary><p>Ja. Mit Shared in MemVerse Premium könnt ihr Einkaufslisten und andere ausdrücklich freigegebene Inhalte zu zweit nutzen. Ein Abo reicht für Shared; dein eingeladener Partner benötigt dafür kein eigenes. Persönliche Premium-Ortsfunktionen werden dadurch nicht automatisch für den Partner freigeschaltet.</p></details>
+    <details><summary>Sind die Startbildschirm-Widgets kostenlos?</summary><p>Ja. Quick Chat für die schnelle Eingabe und Focus für einen relevanten offenen Eintrag gehören zu den kostenlosen Funktionen. Ein Premium-Abo ist für die beiden Android-Widgets nicht nötig.</p></details>
+    <details><summary>Funktioniert MemVerse offline und ohne Anmeldung?</summary><p>Ja, die privaten Kernfunktionen wie Notizen, Aufgaben und Einkaufslisten kannst du lokal ohne Konto nutzen. Anmeldung und Internet brauchst du für Online-Funktionen wie Shared und die Abo-Prüfung. Ortsfunktionen sind optional und hängen von zusätzlichen Freigaben und der Verfügbarkeit ab.</p></details>
+    <details><summary>Wie kann ich MemVerse für Android testen?</summary><p>MemVerse befindet sich im geschlossenen Android-Test. Frage den Beta-Zugang per E-Mail an. Nach der Aufnahme erhältst du die Testinformationen für Google Play. Preise und Laufzeiten von Premium siehst du vor dem Kauf im Google-Play-Kaufdialog.</p></details>
     <details><summary>Muss alles in die Cloud?</summary><p>Nein. MemVerse ist local-first. Private Memories bleiben grundsätzlich auf deinem Gerät. Nur Funktionen wie Shared benötigen ein Konto und Backend-Synchronisation für ausdrücklich freigegebene Inhalte.</p></details>
     <details><summary>Kann ich MemVerse auch alleine nutzen?</summary><p>Ja. Die Kernfunktionen funktionieren ohne Shared. Chat, Memory, MMap, Reminder, Aufgaben, Einkaufslisten und Personenkarten sind auch für die private Nutzung gedacht.</p></details>
     <details><summary>Wofür sind Personenkarten gedacht?</summary><p>Damit du Vorlieben, Abneigungen, Größen, Hobbys, Geschenkideen und andere persönliche Details einer Person zuordnen kannst. So findest du diese Informationen später gezielt wieder.</p></details>
@@ -406,15 +487,22 @@ footer{padding:44px 0;color:#9c95a8;font-size:.86rem}
   <div class="final">
     <div class="eyebrow">MemVerse</div>
     <h2>Weniger organisieren.<br>Mehr einfach festhalten.</h2>
-    <p>Ein Chat für schnelle Erfassung. Eine MMap für Überblick. Shared für das, was ihr gemeinsam im Kopf behalten müsst.</p>
+    <p>Ein Chat für deine Gedanken. Widgets für den nächsten Schritt. Premium für passende Hinweise am richtigen Ort und Shared für euren gemeinsamen Alltag.</p>
     <div class="hero-actions" style="justify-content:center">
-      <a class="btn primary" href="#top">MemVerse entdecken</a>
-      <a class="btn" href="#shared">Shared Premium ansehen</a>
+      <a class="btn primary" href="#testen">Android-Beta anfragen</a>
+      <a class="btn" href="#premium">MemVerse Premium ansehen</a>
     </div>
   </div>
 </section>
 
-<section class="wrap section" style="padding-top:0">
+<section id="testen" class="wrap section" style="padding-top:0">
+  <div class="section-head">
+    <div class="eyebrow">Geschlossener Android-Test</div>
+    <h2>Teste MemVerse in deinem Alltag.</h2>
+    <p>Du suchst eine App für Erinnerungen, Notizen und Einkaufslisten? Schreib uns für den Beta-Zugang. Wir melden uns mit den nächsten Schritten zur Teilnahme über Google Play.</p>
+    <a class="btn primary" href="mailto:memverse.app@gmail.com?subject=MemVerse%20Android-Beta">Beta-Zugang per E-Mail anfragen</a>
+    <p>Die Beta ist noch kein öffentlicher Store-Start. Bitte sende keine Passwörter oder sensiblen Inhalte mit deiner Anfrage. <a href="privacy.html#website">Datenschutz zur Kontaktaufnahme</a></p>
+  </div>
   <div class="trust">
     <div><h3>Fragen zu MemVerse?</h3><p>Schreib uns an <a style="color:var(--violet2)" href="mailto:memverse.app@gmail.com">memverse.app@gmail.com</a>.</p></div>
     <div><h3>Eine App. Viele kleine Dinge weniger im Kopf.</h3><p>MemVerse verbindet Chat, Memory, Reminder, MMap und Shared in einer Oberfläche.</p></div>
@@ -423,6 +511,7 @@ footer{padding:44px 0;color:#9c95a8;font-size:.86rem}
 </main>
 
 <footer>
+  <div class="wrap"><a href="sitemap.xml">Sitemap</a></div>
   <div class="wrap foot">
     <span>© 2026 Deep Orbit Studios</span>
     <div class="footlinks">
