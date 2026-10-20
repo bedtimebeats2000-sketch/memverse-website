@@ -28,13 +28,14 @@
   <div class="eyebrow">Deep Orbit Studios</div>
   <h1>Datenschutzerklärung</h1>
   <p>Diese Datenschutzerklärung beschreibt die Verarbeitung personenbezogener Daten bei Nutzung der Android-App <strong>MemVerse</strong> und der zugehörigen Website.</p>
-  <p class="small">Stand: 25. September 2026</p>
+  <p class="small">Entwurf für V2: 20. Oktober 2026 — noch nicht zur Veröffentlichung freigegeben</p>
 
   <div class="card toc">
     <strong>Inhalt</strong>
     <a href="#verantwortlich">1. Verantwortlicher</a>
     <a href="#grundprinzip">2. Datenschutz-Grundprinzip</a>
     <a href="#lokal">3. Lokale Daten</a>
+    <a href="#standort">3a. Optionale Standorterinnerungen</a>
     <a href="#konto">4. Konto & Anmeldung</a>
     <a href="#shared">5. Shared / MMap</a>
     <a href="#billing">6. Google Play Billing</a>
@@ -73,6 +74,13 @@
   </ul>
   <p>Diese privaten lokalen Daten werden nicht allein durch Anmeldung oder Abmeldung automatisch in die Cloud übertragen. Die Rechtsgrundlage für die lokale Verarbeitung ist Art. 6 Abs. 1 lit. b DSGVO, soweit sie zur Bereitstellung der vom Nutzer gewünschten App-Funktionen erforderlich ist.</p>
 
+  <h2 id="standort">3a. Freiwillige standortbezogene Einkaufserinnerungen (V2)</h2>
+  <p>Diese optionale Funktion verwendet Ihren Standort, um ein von Ihnen ausgewähltes Geschäft zu speichern und Sie in dessen Nähe an passende offene Einkäufe zu erinnern. Automatische Hinweise benötigen bei unterstützten Geräten auch Standortzugriff im Hintergrund, wenn die App geschlossen ist. Die Funktion ist zunächst ausgeschaltet. Vor der Aktivierung erklären wir die Verarbeitung in der App und fragen die erforderlichen Android-Berechtigungen gesondert ab. Ohne Freigabe bleiben normale Einkaufslisten, Notizen und Kalenderfunktionen nutzbar.</p>
+  <p>Gespeicherte Geschäftsnamen, Geschäftstypen, Koordinaten und Artikelzuordnungen werden gerätebezogen gespeichert. Die Zuordnung zu offenen Einkäufen erfolgt lokal. Für die Standorterkennung und die Überwachung ausgewählter Umkreise werden Google Play-Dienste eingesetzt; Google kann hierbei Standort- und technische Gerätedaten nach seinen eigenen Datenschutzinformationen verarbeiten. Wir übertragen Ihren Standort nicht an den Shared-Partner und legen auf dem MemVerse-Backend keinen Bewegungsverlauf an. Für diese erste Umsetzung werden weder eine automatische Google-Places-Geschäftssuche noch personalisierte Standortwerbung eingesetzt.</p>
+  <p>Um wiederholte Hinweise zu begrenzen, speichert die App lokal den letzten Hinweiszeitpunkt je gespeichertem Geschäft sowie einen Tageszähler. Das ist kein vollständiger Besuchs- oder Routenverlauf. Gespeicherte Geschäfte und Zuordnungen bleiben bis zu ihrer Löschung, dem Zurücksetzen der App-Daten oder der Deinstallation erhalten. Beim Entfernen eines Geschäfts wird dessen letzter Hinweiszeitpunkt entfernt. Die Funktion ist jederzeit abschaltbar; dann entfernt MemVerse seine Umkreisüberwachung und unterdrückt weitere standortbezogene Hinweise. Während Ihrer Ruhezeit werden keine neuen Standortabfragen oder automatischen Online-Abgleiche durch MemVerse gestartet und keine Hinweise angezeigt. Bereits übertragene Anfragen und die Standortnutzung durch Android oder andere Apps kann MemVerse nicht rückwirkend verhindern.</p>
+  <p>Die freiwillige Standortfunktion beruht für die Standortverarbeitung auf Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO. Sie können diese mit Wirkung für die Zukunft in der App widerrufen und Android-Berechtigungen entziehen. Die Verarbeitung zur Bereitstellung eines gewählten Premium-Abonnements ist unter Google Play Billing beschrieben. Die Geräteeinstellung zur Standortfreigabe ersetzt die Information über die tatsächlichen Datenflüsse nicht.</p>
+  <p>Die Geschäfte und Artikelzuordnungen dieser ersten V2-Umsetzung sind gerätegebunden und derzeit nicht Bestandteil der ausdrücklich exportierten JSON-Sicherung. Das Abschalten der Hinweise löscht Ihre Einkaufslisten nicht. Für eine vollständige Entfernung können Sie die gespeicherten Geschäfte und Zuordnungen entfernen oder die lokalen App-Daten löschen.</p>
+
   <h2 id="konto">4. Konto, Firebase Authentication und Google Sign-In</h2>
   <p>Für Shared/MMap kann ein Konto verwendet werden. MemVerse unterstützt insbesondere Google Sign-In und E-Mail/Passwort über Firebase Authentication.</p>
   <p>Dabei können insbesondere folgende Daten verarbeitet werden:</p>
@@ -99,7 +107,7 @@
   <p>Private Inhalte mit deaktivierter Freigabe sollen nicht Teil der Shared-Projektion sein. Wird eine Freigabe widerrufen, eine Partnerschaft beendet oder ein geteilter Datensatz gelöscht, wird der Zugriff entsprechend der technischen Synchronisationslogik entzogen und die Shared-Projektion bereinigt.</p>
 
   <h2 id="billing">6. Google Play Billing / Shared Premium</h2>
-  <p>Optionale kostenpflichtige Shared-Premium-Funktionen werden über Google Play Billing angeboten. Die eigentliche Zahlungsabwicklung erfolgt durch Google Play. MemVerse erhält keine vollständigen Zahlungs- oder Kreditkartendaten.</p>
+  <p>Optionale kostenpflichtige Premium-Funktionen für Shared und standortbezogene Einkaufserinnerungen werden über Google Play Billing angeboten. Die eigentliche Zahlungsabwicklung erfolgt durch Google Play. MemVerse erhält keine vollständigen Zahlungs- oder Kreditkartendaten.</p>
   <p>Zur Prüfung des Berechtigungsstatus können technische Kauf- und Aboinformationen verarbeitet werden, z. B. Produkt-/Basisplan, Kaufstatus, Berechtigungsstatus sowie für die Verifikation erforderliche technische Kennungen.</p>
   <p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO zur Abwicklung und Bereitstellung des gewählten Abonnements.</p>
 
