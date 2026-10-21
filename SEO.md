@@ -95,3 +95,7 @@ Die Seiten sind per Meta-Tag indexierbar und die Sitemap ist direkt verlinkt.
 - Google SEO Starter Guide: https://developers.google.com/search/docs/fundamentals/seo-starter-guide
 - Erneutes Crawlen: https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl
 - robots.txt: https://developers.google.com/search/docs/crawling-indexing/robots/intro
+
+## Abschlussprüfung
+
+HTML-Verlinkung, kanonische URLs, JSON-LD, Sitemap und echte Google-Play-Zieladresse geprüft. Die sechs veröffentlichten Webseiten-/Stil-/Sitemap-Dateien wurden live mit der Quelle abgeglichen; die Einkaufslisten-Anleitung wurde zusätzlich im Browser visuell geprüft. Primäre Schaltflächen wurden für besser lesbaren weißen Text abgedunkelt (normaler und Hover-Zustand mindestens 4,5:1). Keine Lighthouse- oder Mobilgeräte-Laborwerte behauptet.
