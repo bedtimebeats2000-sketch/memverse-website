@@ -1,0 +1,20 @@
+# MemVerse-Website – Performance-Standard
+
+Stand: 25.11.2026. Verbindliche Prüfrichtlinie für zukünftige Arbeiten; abgeleitet aus der vom Nutzer besprochenen Performance-Checkliste und an das Projekt angepasst. Noch kein Code-Audit, keine Implementierung und keine gemessene Baseline.
+
+## Verbindlicher Arbeitsstandard
+- Vor einer Änderung vorhandenen Code und Messbasis prüfen; nur relevante Optimierungen im jeweiligen Arbeitspaket umsetzen. Keine Parallelarchitektur, keine neue Infrastruktur ohne nachgewiesenen Bedarf und Freigabe.
+- Sofortige visuelle Rückmeldung, passende Lade-/Fehler-/Leerzustände; langsame Arbeit nicht auf UI-/Render-Thread. Unabhängige Aufgaben nur begrenzt parallel, abhängige Operationen geordnet; Abbruch und Lebenszyklus beachten.
+- Nur benötigte Daten lesen und darstellen; bei großen Listen bedarfsgerecht laden/virtualisieren, Suche bei Bedarf entprellen. Doppelte Aufrufe und unnötige UI-Neuberechnungen vermeiden. Indizes nur nach Messung und unter Wahrung der Konsistenz.
+- Bilder/Assets passend zur Anzeigegröße dekodieren, komprimieren und bei Bedarf laden; Lesbarkeit und Qualität erhalten. RAM, CPU, Akku, Netzwerk, Paketgröße und ungenutzte Abhängigkeiten prüfen. Caches brauchen klare Schlüssel, Größen-/Lebensdauergrenzen, Invalidierung und Fehlerzustände; niemals Berechtigungen, Datenintegrität oder Aktualitätskennzeichnung umgehen.
+- Bei externen Zugriffen Timeouts, begrenzte Wiederholungen mit Backoff, Deduplizierung und Abbruch; keine unbeschränkten Warteschlangen. Keine vertraulichen Daten in Messprotokollen. CDN, Redis, Load Balancing, Connection Pooling, SSR und Streaming nur falls Architektur und belegter Bedarf passen; kein pauschaler Einbau.
+- Vorher/Nachher unter vergleichbaren Bedingungen messen (Release-naher Build, Geräte/OS, Datenumfang, Netzwerk, kalter/warmer Start, mehrere Wiederholungen; p50/p95 wo sinnvoll). Keine Messwerte oder Hardwareabnahmen erfinden. Zielwerte unten sind Vorschläge bis zur Baseline; Abweichungen begründen, nicht durch Funktionsverlust kaschieren.
+- Jede Funktionsänderung: betroffene UI/UX, Hilfe/Tutorial, Sicherheit, Datenschutz, Datenkonsistenz und Regressionstests prüfen. Kritische Regressionen vor Release beheben oder ausdrücklich zur Entscheidung vorlegen. Offene Folgearbeit in bestehender Status-/Phasendokumentation erfassen; keine neue Phase oder Veröffentlichung automatisch starten.
+
+## Priorität und projektspezifische Maßnahmen
+Statische HTML/CSS/JS-Website auf GitHub Pages; vorhandene Architektur erhalten.
+- P0: Mobil zuerst; Hero-/Screenshotbilder passend zuschneiden, responsive srcset/sizes und WebP/AVIF mit geeignetem Fallback prüfen. Feste Abmessungen gegen Layoutsprünge; kritisches Hero-/LCP-Bild nicht lazy laden, unterhalb des sichtbaren Bereichs lazy. Original-Screenshottexte lesbar halten.
+- P0: Nur notwendige CSS/JS laden; nichtkritische Skripte defer/async soweit Reihenfolge korrekt, keine zusätzlichen Tracker, keine unnötigen Fonts/Abhängigkeiten. Systemschriften oder lokal lizenzierte WOFF2 mit font-display nach Bedarf. Statisches HTML erhalten; SSR/Frameworkmigration, Redis und eigener Server nicht nötig.
+- P1: Browser-Caching/Komprimierung auf tatsächliche Hosting-Header prüfen; GitHub Pages bietet keine frei konfigurierbaren Cache-/Brotli-Header. Versionierte Assets nur bei Bedarf; keine Infrastrukturkosten ohne Entscheidung. Keine Änderung an Firebase-Konfiguration, Einladung, Konto-/Datenlöschung, Datenschutz, kanonischen URLs, Sitemap oder Play-Link ohne fachliche Prüfung.
+## Abnahme und Folgearbeit
+Baseline und Vergleich per Lighthouse/PageSpeed oder Browser-DevTools mobil für Startseite, drei Anleitungen und kritische Einladungs-/Löschpfade. Orientierungsziele Core Web Vitals p75: LCP <=2,5 s, INP <=200 ms, CLS <=0,1; Feldmessung getrennt von Labormessung, fehlende Felddaten kennzeichnen. Auch langsames Netz, kleines Display, Tastatur/Screenreader, Link-/Formularfunktion und SEO prüfen. Ergebnisse in SEO.md oder nachfolgender Performance-Dokumentation festhalten. Keine Deploy-/Hostingänderung aus dieser Dokumentation ableiten.
